@@ -7,7 +7,35 @@
     <groupId>org.example</groupId>
     <artifactId>OrnamentFactory</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <properties>   <spring.version>5.2.3.RELEASE</spring.version></properties>
+    <properties>
+        <spring.version>5.2.3.RELEASE</spring.version>
+    </properties>
 
+    <dependencies>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <target>12</target>
+                    <source>12</source>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
