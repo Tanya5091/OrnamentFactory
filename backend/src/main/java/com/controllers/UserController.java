@@ -1,6 +1,8 @@
 package com.controllers;
 
 
+import com.domain.entities.PermissionEntity;
+import com.domain.entities.UserEntity;
 import com.dto.RegistrationDTO;
 import com.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -47,6 +49,18 @@ public class UserController {
         user.setPassword(encodedPassword);
         userService.registerAsSalesManager(user);
         return new ResponseEntity(HttpStatus.CREATED);
+    }
+
+    @GetMapping("/")
+    public String home(Principal principal){
+        String name = principal.getName();
+        UserEntity userEntity = userService.findByLogin(name).get();
+        List<PermissionEntity> permissionEntities = userEntity.getPermissions();
+        String permissions = "";
+        for (int i = 0; i < permissionEntities.size(); i++) {
+            permissions += permissionEntities.get(i).getPermission().toString() + " ";
+        }
+        return "Welcome, " + name + ", " + permissions;
     }
 //
 //    @PreAuthorize("hasAuthority('USER')")
