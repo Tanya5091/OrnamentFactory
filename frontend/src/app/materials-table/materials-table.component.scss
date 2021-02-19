@@ -1,0 +1,16 @@
+.tab-border {
+  border: 1px solid lightgray;
+}
+.tab-head {
+  text-align: left;
+  padding: 8px 0px 8px 24px;
+}
+.tab-head:last-of-type {
+  padding-right: 24px;
+}
+
+.tab-row {
+  color: gray;
+  text-align: left;
+  padding: 8px 0px 8px 24px;
+}

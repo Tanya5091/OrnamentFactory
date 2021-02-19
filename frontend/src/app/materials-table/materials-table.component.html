@@ -1,0 +1,53 @@
+<!-- <table mat-table [dataSource]="tableDataSrc" class="tab-border">
+  <ng-container *ngFor="let col of tableCols">
+    <ng-container matColumnDef="{{ col }}">
+      <th *matHeaderCellDef class="tab-head">{{ col | titlecase }}</th>
+      <td *matCellDef="let material" class="tab-row">
+        {{ material[col] }}
+      </td>
+    </ng-container>
+  </ng-container>
+
+  <ng-container matCollumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let material">{{ material.name }}</td>
+  </ng-container>
+
+  <ng-container matCollumnDef="quantity">
+    <th mat-header-cell *matHeaderCellDef>Quantity</th>
+    <td mat-cell *matCellDef="let material">{{ material.quantity }}</td>
+  </ng-container>
+
+  <ng-container>
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let material">
+      <span class="material-icons">add_circle_outline</span>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="tableCols"></tr>
+  <tr mat-row *matRowDef="let row; columns: tableCols"></tr>
+</table> -->
+<table class="tab-border">
+  <ng-container>
+    <tr>
+      <th class="tab-head">Name</th>
+      <th class="tab-head">Quantity</th>
+      <th class="tab-head"></th>
+    </tr>
+  </ng-container>
+  <ng-container *ngFor="let col of tableData">
+    <tr>
+      <td class="tab-row">{{ col.name }}</td>
+      <td class="tab-row">{{ col.quantity }}</td>
+      <td>
+        <span
+          (click)="tableAction()"
+          style="color: lightgray; cursor: pointer"
+          class="material-icons"
+          >add_circle_outline</span
+        >
+      </td>
+    </tr>
+  </ng-container>
+</table>
