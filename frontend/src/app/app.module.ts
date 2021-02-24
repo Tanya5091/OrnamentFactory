@@ -11,13 +11,16 @@ import {HomeComponent} from './home/home.component';
 import {MaterialsTableComponent} from './materials-table/materials-table.component';
 import {MatTableModule} from '@angular/material/table';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    MaterialsTableComponent
+    MaterialsTableComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     ReactiveFormsModule,
     InputTextModule,
     ButtonModule,
-    MatTableModule
+    MatTableModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

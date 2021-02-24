@@ -26,7 +26,7 @@ public class UserController {
 //
     private final UserService userService;
 
-    @PostMapping("/login")
+    @PostMapping("/api/v1/login")
     public ResponseEntity login(@Valid @RequestBody final RegistrationDTO user) {
         if (userService.loginExists(user.getLogin())) {
             return new ResponseEntity<>(Collections.singletonList(userService.findByLogin("Status will come here later")),HttpStatus.ACCEPTED);
@@ -37,7 +37,7 @@ public class UserController {
 
     }
 
-    @PostMapping("/register")
+    @PostMapping("/api/v1/register")
     public ResponseEntity register(@Valid @RequestBody final RegistrationDTO user) {
         if (userService.loginExists(user.getLogin())) {
             return new ResponseEntity<>(Collections.singletonList("Login already exists"),
