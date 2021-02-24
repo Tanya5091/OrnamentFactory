@@ -51,17 +51,17 @@ public class UserController {
         return new ResponseEntity(HttpStatus.CREATED);
     }
 
-    @GetMapping("/")
-    public String home(Principal principal){
-        String name = principal.getName();
-        UserEntity userEntity = userService.findByLogin(name).get();
-        List<PermissionEntity> permissionEntities = userEntity.getPermissions();
-        String permissions = "";
-        for (int i = 0; i < permissionEntities.size(); i++) {
-            permissions += permissionEntities.get(i).getPermission().toString() + " ";
-        }
-        return "Welcome, " + name + ", " + permissions;
-    }
+//    @GetMapping("/")
+//    public String home(Principal principal){
+//        String name = principal.getName();
+//        UserEntity userEntity = userService.findByLogin(name).get();
+//        List<PermissionEntity> permissionEntities = userEntity.getPermissions();
+//        String permissions = "";
+//        for (int i = 0; i < permissionEntities.size(); i++) {
+//            permissions += permissionEntities.get(i).getPermission().toString() + " ";
+//        }
+//        return "Welcome, " + name + ", " + permissions;
+//    }
 //
 //    @PreAuthorize("hasAuthority('USER')")
 //    @GetMapping("/books/favorite")
