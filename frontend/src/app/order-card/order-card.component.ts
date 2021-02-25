@@ -22,6 +22,8 @@ export class OrderCardComponent implements OnInit {
     4: 'Прийнято'
   }
 
+  @Input() worker : boolean = false
+
   constructor() { }
 
   ngOnInit(): void {
