@@ -13,6 +13,9 @@ import {MatTableModule} from '@angular/material/table';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { RegisterComponent } from './register/register.component';
+import { HeaderComponent } from './header/header.component';
+import { OrderCardComponent } from './order-card/order-card.component';
+import { WorkerPageComponent } from './worker-page/worker-page.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import { RegisterComponent } from './register/register.component';
     LoginComponent,
     HomeComponent,
     MaterialsTableComponent,
-    RegisterComponent
+    RegisterComponent,
+    HeaderComponent,
+    OrderCardComponent,
+    WorkerPageComponent
   ],
   imports: [
     BrowserModule,

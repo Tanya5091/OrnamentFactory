@@ -1,0 +1,70 @@
+.order {
+  background-color: #7ca7e8;
+  max-width: 400px;
+  font-size: 28px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: 10px;
+  color: white;
+  margin: 0 auto;
+  padding: 12px 24px;
+}
+
+.order-accepted {
+  background-color: rgba(125, 194, 92, 0.6);
+}
+
+.order-header {
+  display: flex;
+  margin-bottom: 16px;
+  line-height: 30px;
+}
+.order-header-item {
+  flex: 2;
+}
+
+.order-header-item:last-child {
+  flex: 1;
+}
+
+.priority-block {
+  display: flex;
+  align-items: center;
+}
+
+.priority-status {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+}
+
+.order-properties {
+  display: flex;
+  align-items: flex-end;
+  font-size: 23px;
+}
+
+.order-properties-item {
+  flex: 1;
+}
+
+.submit-order {
+  color: black;
+  background-color: rgb(92 143 221);
+  font-size: 40px;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.green {
+  background-color: green;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.red {
+  background-color: red;
+}

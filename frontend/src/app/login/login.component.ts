@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['home']);
     }, error1 => {
       alert('login ERROR!');
+      // this.router.navigate(['home']);
       this.loading = false;
     });
   }

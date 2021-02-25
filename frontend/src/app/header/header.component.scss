@@ -1,0 +1,43 @@
+.header-title {
+  font-size: 48px;
+  line-height: 59px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 400;
+  padding: 8px;
+  color: #2a6c9c;
+}
+
+.header-grid {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+}
+.icons {
+  font-size: 37px;
+  margin-right: 16px;
+  vertical-align: text-bottom;
+}
+
+.icons-grid {
+  display: flex;
+}
+.icons-group {
+  margin-top: 24px;
+}
+
+.avatar-container {
+  width: 90px;
+  height: 90px;
+  display: flex;
+  margin-bottom: 4px;
+}
+.avatar-image {
+  border-radius: 50%;
+}
+.avatar-text {
+  font-size: 22px;
+  line-height: 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 700;
+  text-align: center;
+}

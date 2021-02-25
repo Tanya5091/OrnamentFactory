@@ -1,5 +1,6 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import * as EventEmitter from 'events';
+import { MaterialModel } from '../models/material-model.interface';
 
 @Component({
   selector: 'app-materials-table',
@@ -9,47 +10,47 @@ import * as EventEmitter from 'events';
 export class MaterialsTableComponent implements OnInit {
 
   // TODO change mock data to a database data
-  tableData: {}[] = [
+  @Input() tableData: Array<MaterialModel> = [
     {
-      name: 'Hook',
+      name: 'Гачок',
       quantity: 500,
-      ' ':() => {console.log('add')}
+      // ' ':() => {console.log('add')}
     },
     {
-      name: 'Red paint',
+      name: 'Напилення червоне',
       quantity: 30,
-      ' ':() => {console.log('add')}
+      // ' ':() => {console.log('add')}
     },
     {
-      name: 'Balls',
-      quantity: '1000',
+      name: 'Кулі',
+      quantity: 1000
     },
     {
-      name: 'Blue paint',
+      name: 'Напилення синє',
       quantity: 257,
     },
     {
-      name: 'White paint',
+      name: 'Напилення біле',
       quantity: 25,
     },
     {
-      name: 'Green paint',
+      name: 'Напилення зелене',
       quantity: 25,
     },
     {
-      name: 'Crown',
+      name: 'Коронка',
       quantity: 15000,
     },
     {
-      name: 'Pink paint',
+      name: 'Напилення рожеве',
       quantity: 25,
     },
     {
-      name: 'Yellow paint',
+      name: 'Напилення жовте',
       quantity: 25,
     },
     {
-      name: 'Black paint',
+      name: 'Напилення чорне',
       quantity: 25,
     },
   ]
