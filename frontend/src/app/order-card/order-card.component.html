@@ -25,6 +25,8 @@
       <ng-template #elseBlock>Прийнято</ng-template>
       <div>до {{ order.dueDate }}</div>
     </div>
-    <div *ngIf="order.status < 4" class="submit-order material-icons">done</div>
+    <div *ngIf="order.status < 4 && worker" class="submit-order material-icons">
+      done
+    </div>
   </div>
 </div>

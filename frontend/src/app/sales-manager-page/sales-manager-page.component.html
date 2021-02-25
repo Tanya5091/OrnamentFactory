@@ -1,21 +1,10 @@
 <app-header></app-header>
 <div class="page-layout">
-  <div class="page-collumn">
-    <div class="collumn-header">Менеджер</div>
-    <div class="collumn-body">
-      <div class="avatar-container">
-        <img
-          class="avatar-image"
-          src="./assets/Profile_avatar_placeholder_large.png"
-        />
-      </div>
-      <div class="avatar-text">Ім'я</div>
-    </div>
-  </div>
+  <div class="page-collumn"></div>
 
   <div class="page-collumn">
     <div class="collumn-header">Замовлення</div>
-    <div class="collumn-body">
+    <div class="collumn-body central-collumn">
       <div>
         <div
           class="order-group-header"
@@ -34,7 +23,7 @@
         <div *ngIf="!collapseActive">
           <div *ngFor="let order of activeOrders">
             <div class="order-container">
-              <app-order-card [order]="order" [worker]="true"></app-order-card>
+              <app-order-card [order]="order"></app-order-card>
             </div>
           </div>
         </div>
@@ -64,9 +53,9 @@
   </div>
 
   <div class="page-collumn">
-    <div class="collumn-header">Матеріали</div>
+    <div class="collumn-header">Нове замовлення</div>
     <div class="materials-table-container">
-      <app-materials-table></app-materials-table>
+      <app-new-order-form></app-new-order-form>
     </div>
   </div>
 </div>

@@ -16,6 +16,8 @@ import { RegisterComponent } from './register/register.component';
 import { HeaderComponent } from './header/header.component';
 import { OrderCardComponent } from './order-card/order-card.component';
 import { WorkerPageComponent } from './worker-page/worker-page.component';
+import { NewOrderFormComponent } from './new-order-form/new-order-form.component';
+import { SalesManagerPageComponent } from './sales-manager-page/sales-manager-page.component';
 import { UnitManagerPageComponent } from './unit-manager-page/unit-manager-page.component';
 
 @NgModule({
@@ -28,6 +30,8 @@ import { UnitManagerPageComponent } from './unit-manager-page/unit-manager-page.
     HeaderComponent,
     OrderCardComponent,
     WorkerPageComponent,
+    NewOrderFormComponent,
+    SalesManagerPageComponent,
     UnitManagerPageComponent
   ],
   imports: [

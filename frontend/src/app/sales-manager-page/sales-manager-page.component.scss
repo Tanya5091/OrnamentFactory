@@ -1,0 +1,44 @@
+.page-layout {
+  display: flex;
+}
+
+.page-collumn {
+  flex: 3;
+}
+
+.central-collumn {
+  border-left: 3px solid rgba(0, 0, 0, 0.2);
+}
+.collumn-header {
+  text-align: center;
+  font-size: 22px;
+  line-height: 20px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.collumn-body {
+  border-right: 3px solid rgba(0, 0, 0, 0.2);
+
+  height: 100%;
+}
+
+.page-collumn:first-of-type {
+  flex: 1;
+}
+.order-container {
+  margin-bottom: 12px;
+}
+
+.order-group-header {
+  padding: 8px 0 16px 24px;
+  display: flex;
+  font-size: 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  align-items: flex-end;
+  cursor: pointer;
+}
+
+.materials-table-container {
+  padding: 8px 16px;
+}
