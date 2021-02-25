@@ -16,6 +16,7 @@ import { RegisterComponent } from './register/register.component';
 import { HeaderComponent } from './header/header.component';
 import { OrderCardComponent } from './order-card/order-card.component';
 import { WorkerPageComponent } from './worker-page/worker-page.component';
+import { UnitManagerPageComponent } from './unit-manager-page/unit-manager-page.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { WorkerPageComponent } from './worker-page/worker-page.component';
     RegisterComponent,
     HeaderComponent,
     OrderCardComponent,
-    WorkerPageComponent
+    WorkerPageComponent,
+    UnitManagerPageComponent
   ],
   imports: [
     BrowserModule,
