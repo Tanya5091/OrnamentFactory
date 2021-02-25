@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
 
   public loginForm: FormGroup | undefined;
   public error = '';
@@ -34,13 +34,12 @@ export class LoginComponent implements OnInit {
       password: this.loginForm.get('password').value
     };
     this.loading = true;
-    this.httpClient.post('/api/v1/login', user).subscribe(res => {
-      alert('login success!');
-      this.router.navigate(['home']);
+    this.httpClient.post('/api/v1/register', user).subscribe(res => {
+      alert('register success!');
+      this.router.navigate(['login']);
     }, error1 => {
-      alert('login ERROR!');
-      // this.router.navigate(['home']);
       this.loading = false;
+      alert('register ERROR!');
     });
   }
 }

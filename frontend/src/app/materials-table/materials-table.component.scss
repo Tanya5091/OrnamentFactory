@@ -1,8 +1,11 @@
 .tab-border {
   border: 1px solid lightgray;
+  min-width: 400px;
 }
 .tab-head {
   text-align: left;
+
+  font-size: 24px;
   padding: 8px 0px 8px 24px;
 }
 .tab-head:last-of-type {
@@ -12,5 +15,6 @@
 .tab-row {
   color: gray;
   text-align: left;
+  font-size: 24px;
   padding: 8px 0px 8px 24px;
 }

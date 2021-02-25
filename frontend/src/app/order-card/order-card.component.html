@@ -1,0 +1,23 @@
+<div [class.order-accepted]="order.status === 4" class="order">
+  <div class="order-header">
+    <div class="order-header-item">{{ order.name }}</div>
+    <div class="order-header-item"></div>
+  </div>
+  <div class="order-properties">
+    <div class="order-properties-item">{{ order.quantity }} штук</div>
+    <div class="order-properties-item">
+      <div *ngIf="order.status < 4; else elseBlock" class="priority-block">
+        <div style="margin-right: 16px">Пріоритет</div>
+        <div
+          [class.red]="statusMapping[order.status] === 'red'"
+          [class.green]="statusMapping[order.status] === 'green'"
+          [class.yellow]="statusMapping[order.status] === 'yellow'"
+          class="priority-status"
+        ></div>
+      </div>
+      <ng-template #elseBlock>Прийнято</ng-template>
+      <div>до {{ order.dueDate }}</div>
+    </div>
+    <div *ngIf="order.status < 4" class="submit-order material-icons">done</div>
+  </div>
+</div>
