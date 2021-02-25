@@ -19,11 +19,22 @@
   line-height: 30px;
 }
 .order-header-item {
-  flex: 2;
+  flex: 3;
 }
 
-.order-header-item:last-child {
+.order-header-item:last-of-type {
   flex: 1;
+  flex-grow: inherit;
+}
+
+.icon-style {
+  font-size: 40px;
+  color: black;
+  cursor: pointer;
+}
+
+.delete-icon {
+  transform: rotate(45deg);
 }
 
 .priority-block {
