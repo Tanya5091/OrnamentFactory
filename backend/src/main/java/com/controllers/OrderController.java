@@ -1,7 +1,9 @@
 package com.controllers;
 
+import com.domain.type.ChangePriority;
 import com.domain.type.ChangeStatus;
 import com.domain.type.OrderStatus;
+import com.domain.type.Priority;
 import com.dto.OrderDTO;
 import com.services.OrderService;
 import com.services.UserService;
@@ -31,6 +33,12 @@ public class OrderController {
     public ResponseEntity changeStatus(@RequestBody ChangeStatus changeStatus){
         OrderStatus orderStatus = OrderStatus.values()[changeStatus.getStatus()];
         orderService.changeStatus(changeStatus.getName(), orderStatus);
+        return new ResponseEntity(HttpStatus.ACCEPTED);
+    }
+    @PostMapping("api/v1/change_priority")
+    public ResponseEntity changePriority(@RequestBody ChangePriority prior){
+        Priority priority = Priority.values()[prior.getPriority()];
+        orderService.changePriority(prior.getName(), priority);
         return new ResponseEntity(HttpStatus.ACCEPTED);
     }
 

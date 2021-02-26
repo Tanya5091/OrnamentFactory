@@ -3,6 +3,7 @@ package com.services;
 
 import com.domain.entities.OrderEntity;
 import com.domain.type.OrderStatus;
+import com.domain.type.Priority;
 import com.dto.OrderDTO;
 import com.repositories.OrderRepository;
 import lombok.RequiredArgsConstructor;
@@ -59,8 +60,8 @@ public class OrderService {
                 .build());
     }
 
-    public void changePriority(final OrderEntity orderEntity){
-        //TODO
+    public void changePriority(String name, Priority priority){
+        orderRepository.setOrderPriority(name, priority);
     }
 
 

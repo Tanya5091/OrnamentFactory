@@ -2,6 +2,7 @@ package com.repositories;
 
 import com.domain.entities.OrderEntity;
 import com.domain.type.OrderStatus;
+import com.domain.type.Priority;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -28,5 +29,10 @@ public interface OrderRepository extends JpaRepository<OrderEntity, Integer> {
     @Transactional
     @Query("UPDATE OrderEntity o set o.status = :status where o.toyName = :name")
     void setOrderStatus(@Param("name")final String name, @Param("status")final OrderStatus status);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE OrderEntity o set o.priority = :priority where o.toyName = :name")
+    void setOrderPriority(@Param("name")final String name, @Param("priority")final Priority priority);
 
 }
