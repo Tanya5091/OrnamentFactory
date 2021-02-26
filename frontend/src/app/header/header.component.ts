@@ -24,16 +24,13 @@ export class HeaderComponent implements OnInit {
         label: 'Navigate',
         items: [{
           label: 'Sales Manager',
-          icon: 'pi pi-external-link',
           routerLink: '/sales-manager'
         }, {
           label: 'Worker',
-          icon: 'pi pi-external-link',
           routerLink: '/worker-page'
         },
           {
             label: 'Unit Manager',
-            icon: 'pi pi-upload',
             routerLink: '/unit-manager-page'
           }
         ]}

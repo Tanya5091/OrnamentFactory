@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   public loading = false;
 
   constructor(
-    private router: Router,
+    public router: Router,
     private formBuilder: FormBuilder,
     private httpClient: HttpClient
   ) {
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.httpClient.post('/api/v1/login', user).subscribe(res => {
       alert('login success!');
-      this.router.navigate(['home']);
+      this.router.navigate(['worker-page']);
     }, error1 => {
       alert('login ERROR!');
       // this.router.navigate(['home']);
