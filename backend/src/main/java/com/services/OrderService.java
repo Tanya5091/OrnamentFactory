@@ -49,6 +49,9 @@ public class OrderService {
         orderRepository.setOrderStatus(name, status);
     }
 
+    public void changePriority(String name, Priority priority){
+        orderRepository.setOrderPriority(name, priority);
+    }
 
     public OrderEntity createOrder(final OrderDTO orderDTO){
         return save(OrderEntity.builder()
@@ -60,9 +63,10 @@ public class OrderService {
                 .build());
     }
 
-    public void changePriority(String name, Priority priority){
-        orderRepository.setOrderPriority(name, priority);
+    public List<OrderEntity> getAllOrders(){
+            return orderRepository.getAllOrders();
     }
+
 
 
 }

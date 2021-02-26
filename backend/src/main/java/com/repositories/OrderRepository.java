@@ -35,4 +35,8 @@ public interface OrderRepository extends JpaRepository<OrderEntity, Integer> {
     @Query("UPDATE OrderEntity o set o.priority = :priority where o.toyName = :name")
     void setOrderPriority(@Param("name")final String name, @Param("priority")final Priority priority);
 
+    @Query("SELECT order FROM OrderEntity order")
+    List<OrderEntity> getAllOrders();
+
+
 }
