@@ -19,6 +19,11 @@ import { WorkerPageComponent } from './worker-page/worker-page.component';
 import { NewOrderFormComponent } from './new-order-form/new-order-form.component';
 import { SalesManagerPageComponent } from './sales-manager-page/sales-manager-page.component';
 import { UnitManagerPageComponent } from './unit-manager-page/unit-manager-page.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatSelectModule} from "@angular/material/select";
+import {MenuModule} from 'primeng/menu';
+import {MenuItem, MessageService} from 'primeng/api';
+
 
 @NgModule({
   declarations: [
@@ -42,9 +47,14 @@ import { UnitManagerPageComponent } from './unit-manager-page/unit-manager-page.
     InputTextModule,
     ButtonModule,
     MatTableModule,
-    HttpClientModule
+    HttpClientModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MenuModule
   ],
-  providers: [],
+  providers: [
+    MessageService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

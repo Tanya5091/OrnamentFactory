@@ -3,7 +3,17 @@
 
   <div class="icons-grid">
     <div class="icons-group">
-      <div class="material-icons icons">menu</div>
+<!--      <div class="material-icons icons">menu</div>-->
+<!--      <mat-form-field (select)="onSelect(selected)" appearance="fill">-->
+<!--        <mat-label>Select an option</mat-label>-->
+<!--        <mat-select [(value)]="selected">-->
+<!--          <mat-option value="sales-manager">Sales Manager</mat-option>-->
+<!--          <mat-option value="worker-page">Worker</mat-option>-->
+<!--          <mat-option value="unit-manager-page">Unit Manager</mat-option>-->
+<!--        </mat-select>-->
+<!--      </mat-form-field>-->
+      <button type="button" pButton icon="pi pi-bars" label="Show" (click)="menu.toggle($event)"></button>
+      <p-menu #menu [popup]="true" [model]="items"></p-menu>
       <div class="material-icons icons">notifications</div>
     </div>
     <div>
