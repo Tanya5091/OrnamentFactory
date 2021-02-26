@@ -37,6 +37,7 @@ public class OrderEntity {
     @Column(name = "deadline")
     private Date deadline;
 
+//    @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private OrderStatus status;
 

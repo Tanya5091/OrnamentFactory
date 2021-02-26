@@ -28,7 +28,6 @@ public class OrderDTO {
 
     private Date deadline;
 
-
     public String getToyName(){
         return toyName;
     }
