@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div class="page-layout">
   <div class="page-collumn">
-    <div class="collumn-header">Менеджер</div>
+    <div class="collumn-header">Робітник</div>
     <div class="collumn-body">
       <div class="avatar-container">
         <img
@@ -34,7 +34,10 @@
         <div *ngIf="!collapseActive">
           <div *ngFor="let order of activeOrders">
             <div class="order-container">
-              <app-order-card [order]="order" [worker]="true"></app-order-card>
+              <app-order-card
+                [order]="order"
+                [withDelete]="true"
+              ></app-order-card>
             </div>
           </div>
         </div>
@@ -64,9 +67,27 @@
   </div>
 
   <div class="page-collumn">
-    <div class="collumn-header">Матеріали</div>
-    <div class="materials-table-container">
-      <app-materials-table></app-materials-table>
+    <div class="collumn-header">Нові замовлення</div>
+    <div>
+      <div
+        class="order-group-header"
+        (click)="newOrdersCollapse = !newOrdersCollapse"
+      >
+        Іграшки
+        <span *ngIf="newOrdersCollapse; else elseBlock" class="material-icons">
+          keyboard_arrow_right
+        </span>
+        <ng-template #elseBlock>
+          <span class="material-icons"> keyboard_arrow_down </span></ng-template
+        >
+      </div>
+      <div *ngIf="!newOrdersCollapse">
+        <div *ngFor="let order of newOrders">
+          <div class="order-container">
+            <app-order-card [order]="order" [newOrder]="true"></app-order-card>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
