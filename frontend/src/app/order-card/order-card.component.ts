@@ -7,6 +7,11 @@ import { OrderModel } from '../models/order-model.interface';
   styleUrls: ['./order-card.component.scss']
 })
 export class OrderCardComponent implements OnInit {
+
+  @Input() newOrder: boolean = false
+
+  @Input() withDelete: boolean = false
+
   @Input() order: OrderModel 
   // = {        // mock-data
   //   name: "Кульки з синім напиленням",
@@ -21,6 +26,8 @@ export class OrderCardComponent implements OnInit {
     3: 'red',
     4: 'Прийнято'
   }
+
+  @Input() worker : boolean = false
 
   constructor() { }
 
