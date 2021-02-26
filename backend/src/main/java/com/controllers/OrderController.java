@@ -1,5 +1,6 @@
 package com.controllers;
 
+import com.domain.entities.OrderEntity;
 import com.domain.type.ChangePriority;
 import com.domain.type.ChangeStatus;
 import com.domain.type.OrderStatus;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -46,6 +48,11 @@ public class OrderController {
     public ResponseEntity deleteOrder(@RequestBody int id){
         HttpStatus httpStatus = orderService.deleteOrder(id);
         return new ResponseEntity(httpStatus);
+    }
+
+    @GetMapping("api/v1/get_orders")
+    public List<OrderEntity> getAllOrders(){
+        return orderService.getAllOrders();
     }
 
 }
