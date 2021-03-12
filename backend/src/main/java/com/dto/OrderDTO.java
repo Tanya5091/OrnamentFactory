@@ -1,6 +1,7 @@
 package com.dto;
 
 
+import com.domain.type.OrderStatus;
 import com.domain.type.Priority;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,6 +29,17 @@ public class OrderDTO {
 
     private Date deadline;
 
+    public String getStatus() {
+        return status;
+    }
+
+    private String status;
+
+    public Integer getId() {
+        return id;
+    }
+
+    private Integer id;
     public String getToyName(){
         return toyName;
     }

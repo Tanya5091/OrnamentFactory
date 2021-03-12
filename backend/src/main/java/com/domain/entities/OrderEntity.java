@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "ordertable")
@@ -41,4 +42,11 @@ public class OrderEntity {
     @Column(name = "status")
     private OrderStatus status;
 
+//    @ManyToOne
+//    @JoinTable(
+//            name = "ordertable_to_user",
+//            joinColumns = @JoinColumn(name = "id"),
+//            inverseJoinColumns = @JoinColumn(name = "user_id")
+//    )
+//    private UserEntity user;
 }

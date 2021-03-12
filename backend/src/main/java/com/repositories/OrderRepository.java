@@ -20,6 +20,9 @@ public interface OrderRepository extends JpaRepository<OrderEntity, Integer> {
     @Query("SELECT order FROM OrderEntity order WHERE order.toyName = :name")
     Optional<List<OrderEntity>> findByName(@Param("name") String name);
 
+    @Query("SELECT order FROM OrderEntity order")
+    List<OrderEntity> findAll();
+
     @Modifying
     @Transactional
     @Query("delete from OrderEntity o where o.id=:id")

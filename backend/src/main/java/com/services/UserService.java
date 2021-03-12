@@ -1,14 +1,19 @@
 package com.services;
 
+import com.domain.entities.OrderEntity;
 import com.domain.entities.UserEntity;
 import com.domain.type.Permission;
+import com.dto.LoginDTO;
 import com.dto.RegistrationDTO;
 import com.repositories.PermissionRepository;
 import com.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+import javax.validation.Valid;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 @Service
 @RequiredArgsConstructor
@@ -25,7 +30,9 @@ public class UserService {
         return userRepository.findByLogin(login);
     }
 
-
+    public Optional<UserEntity> checkCredentials(final LoginDTO user) {
+        return userRepository.checkCredentials(user.getLogin(), user.getPassword());
+    }
 
     public boolean loginExists(final String login) {
         return userRepository.existsAllByLogin(login);
@@ -56,6 +63,8 @@ public class UserService {
                 .permissions(Collections.singletonList(permissionRepository.findByPermission(Permission.MANAGER)))
                 .build());
     }
+    @Transactional
+    public void deleteUserByLogin(final String login){  userRepository.deleteUserEntityByLogin(login);}
 
-
+//    public List<OrderEntity> findUserOrders(int id) { return userRepository.findOrdersById(id);}
 }

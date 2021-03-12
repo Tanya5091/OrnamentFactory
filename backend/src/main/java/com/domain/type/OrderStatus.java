@@ -6,5 +6,5 @@ import java.io.Serializable;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum OrderStatus {
-    ACTIVE, DONE
+    NEW, ACTIVE, DONE
 }

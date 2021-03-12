@@ -30,7 +30,9 @@ public class OrderService {
         return orderRepository.findByName(name);
     }
 
-
+    public List<OrderEntity> getAllOrders() {
+            return orderRepository.findAll();
+    }
     public boolean existById(final int id){
         return orderRepository.existsById(id);
     }
@@ -59,13 +61,13 @@ public class OrderService {
                 .quantity(orderDTO.getQuantity())
                 .priority(orderDTO.getPriority())
                 .deadline(orderDTO.getDeadline())
-                .status(OrderStatus.ACTIVE)
+                .status(OrderStatus.NEW)
                 .build());
     }
 
-    public List<OrderEntity> getAllOrders(){
-            return orderRepository.getAllOrders();
-    }
+//    public List<OrderEntity> getAllOrders(){
+//            return orderRepository.getAllOrders();
+//    }
 
 
 

@@ -35,6 +35,6 @@ public class MainApp {
         System.out.println(userService.findByLogin("sales"));
         System.out.println(userService.findByLogin("salesM"));
         System.out.println(userService.findByLogin("admin"));
-
+        System.out.println();
     }
 }

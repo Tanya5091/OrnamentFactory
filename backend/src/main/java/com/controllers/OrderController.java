@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -50,9 +51,20 @@ public class OrderController {
         return new ResponseEntity(httpStatus);
     }
 
+//    @GetMapping("api/v1/get_orders")
+//    public List<OrderEntity> getAllOrders(){
+//        return orderService.getAllOrders( );
+//    }
+
     @GetMapping("api/v1/get_orders")
-    public List<OrderEntity> getAllOrders(){
-        return orderService.getAllOrders();
+    public ResponseEntity<List<OrderDTO>> getOrders(){
+//        HttpStatus httpStatus = orderService.getAllOrders();
+        List<OrderEntity> orders = orderService.getAllOrders();
+        List<OrderDTO> res = new ArrayList<>();
+        for(OrderEntity ord : orders){
+            res.add(new OrderDTO(ord.getToyName(), ord.getQuantity(), ord.getPriority(), ord.getDeadline(), ord.getStatus().toString(), ord.getId()));
+        }
+        return new ResponseEntity(res, HttpStatus.OK);
     }
 
 }
