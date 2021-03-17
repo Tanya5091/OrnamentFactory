@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.parameters.P;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -57,6 +58,17 @@ public class UserController {
             return res;
         }
 
+    }
+
+    @GetMapping("/api/v1/get_user")
+    public ResponseEntity<UserEntity> getUserById(@RequestBody  int id){
+        Optional<UserEntity> userOpt = userService.findById(id);
+        if(userOpt.isPresent()) {
+            return new ResponseEntity(userOpt.get(), HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
     }
 //@PostMapping("/api/v1/login")
 ////@RequestMapping(consumes = MediaType.APPLICATION_JSON_VALUE)

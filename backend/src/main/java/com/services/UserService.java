@@ -30,6 +30,8 @@ public class UserService {
         return userRepository.findByLogin(login);
     }
 
+    public Optional<UserEntity> findById(final int id){return userRepository.findById(id);}
+
     public Optional<UserEntity> checkCredentials(final LoginDTO user) {
         return userRepository.checkCredentials(user.getLogin(), user.getPassword());
     }

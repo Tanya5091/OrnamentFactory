@@ -42,6 +42,31 @@ public class OrderEntity {
     @Column(name = "status")
     private OrderStatus status;
 
+    public String getToyName() {
+        return toyName;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public Priority getPriority() {
+        return priority;
+    }
+
+    public Date getDeadline() {
+        return deadline;
+    }
+
+    public OrderStatus getStatus() {
+        return status;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+
 //    @ManyToOne
 //    @JoinTable(
 //            name = "ordertable_to_user",

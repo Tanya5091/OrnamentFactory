@@ -30,9 +30,6 @@ public class OrderService {
         return orderRepository.findByName(name);
     }
 
-    public List<OrderEntity> getAllOrders() {
-            return orderRepository.findAll();
-    }
     public boolean existById(final int id){
         return orderRepository.existsById(id);
     }
@@ -68,6 +65,10 @@ public class OrderService {
 //    public List<OrderEntity> getAllOrders(){
 //            return orderRepository.getAllOrders();
 //    }
+    public List<OrderEntity> getAllOrders(){
+            return orderRepository.findAll();
+//            return orderRepository.getAllOrders();
+    }
 
 
 

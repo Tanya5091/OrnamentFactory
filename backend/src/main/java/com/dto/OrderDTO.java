@@ -17,6 +17,8 @@ import java.util.Date;
 @AllArgsConstructor
 public class OrderDTO {
 
+    private Integer id;
+
     @NotEmpty(message = "You should write name for order")
     @Size(min = 2, max = 1000, message = "Order must be between 8 and 20 characters")
     private String toyName;
@@ -29,30 +31,39 @@ public class OrderDTO {
 
     private Date deadline;
 
-    public String getStatus() {
-        return status;
-    }
-
     private String status;
+
+    public OrderDTO(String toyName, int quantity, Priority priority, Date deadline, String status, int id) {
+        this.deadline = deadline;
+        this.priority = priority;
+        this.quantity = quantity;
+        this.toyName = toyName;
+        this.id = id;
+        this.status = status;
+    }
 
     public Integer getId() {
         return id;
     }
 
-    private Integer id;
-    public String getToyName(){
+
+    public String getToyName() {
         return toyName;
     }
 
-    public int getQuantity(){
+    public String getStatus() {
+        return status;
+    }
+
+    public int getQuantity() {
         return quantity;
     }
 
-    public Priority getPriority(){
+    public Priority getPriority() {
         return priority;
     }
 
-    public Date getDeadline(){
+    public Date getDeadline() {
         return deadline;
     }
 

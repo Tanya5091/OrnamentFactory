@@ -31,7 +31,7 @@ public class MainApp {
 //        OrderDTO orderDTO = new OrderDTO("Green toy", 100, Priority.GREEN, new Date());
 //        orderService.createOrder(orderDTO);
 
-        System.out.println(orderService.findOrderByName("Green toy"));
+//        System.out.println(orderService.findOrderByName("TEST TOY"));
         System.out.println(userService.findByLogin("sales"));
         System.out.println(userService.findByLogin("salesM"));
         System.out.println(userService.findByLogin("admin"));
