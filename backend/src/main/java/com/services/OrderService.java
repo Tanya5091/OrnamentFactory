@@ -44,12 +44,12 @@ public class OrderService {
         }
     }
 
-    public void changeStatus(String name, OrderStatus status){
-        orderRepository.setOrderStatus(name, status);
+    public void changeStatus(int id, OrderStatus status){
+        orderRepository.setOrderStatus(id, status);
     }
 
-    public void changePriority(String name, Priority priority){
-        orderRepository.setOrderPriority(name, priority);
+    public void changePriority(int id, Priority priority){
+        orderRepository.setOrderPriority(id, priority);
     }
 
     public OrderEntity createOrder(final OrderDTO orderDTO){

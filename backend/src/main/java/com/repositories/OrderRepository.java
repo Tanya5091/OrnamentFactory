@@ -30,13 +30,13 @@ public interface OrderRepository extends JpaRepository<OrderEntity, Integer> {
 
     @Modifying
     @Transactional
-    @Query("UPDATE OrderEntity o set o.status = :status where o.toyName = :name")
-    void setOrderStatus(@Param("name")final String name, @Param("status")final OrderStatus status);
+    @Query("UPDATE OrderEntity o set o.status = :status where o.id = :id")
+    void setOrderStatus(@Param("id")final int id, @Param("status")final OrderStatus status);
 
     @Modifying
     @Transactional
-    @Query("UPDATE OrderEntity o set o.priority = :priority where o.toyName = :name")
-    void setOrderPriority(@Param("name")final String name, @Param("priority")final Priority priority);
+    @Query("UPDATE OrderEntity o set o.priority = :priority where o.id = :id")
+    void setOrderPriority(@Param("id")final int id, @Param("priority")final Priority priority);
 
     @Query("SELECT order FROM OrderEntity order")
     List<OrderEntity> getAllOrders();

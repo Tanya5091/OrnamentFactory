@@ -36,13 +36,13 @@ public class OrderController {
     @PostMapping("api/v1/change_status")
     public ResponseEntity changeStatus(@RequestBody ChangeStatus changeStatus){
         OrderStatus orderStatus = OrderStatus.values()[changeStatus.getStatus()];
-        orderService.changeStatus(changeStatus.getName(), orderStatus);
+        orderService.changeStatus(changeStatus.getId(), orderStatus);
         return new ResponseEntity(HttpStatus.ACCEPTED);
     }
     @PostMapping("api/v1/change_priority")
     public ResponseEntity changePriority(@RequestBody ChangePriority prior){
         Priority priority = Priority.values()[prior.getPriority()];
-        orderService.changePriority(prior.getName(), priority);
+        orderService.changePriority(prior.getId(), priority);
         return new ResponseEntity(HttpStatus.ACCEPTED);
     }
 
