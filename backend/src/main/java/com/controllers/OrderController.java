@@ -10,6 +10,7 @@ import com.services.OrderService;
 import com.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.aspectj.weaver.ast.Or;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,13 +36,13 @@ public class OrderController {
 
     @PostMapping("api/v1/change_status")
     public ResponseEntity changeStatus(@RequestBody ChangeStatus changeStatus){
-        OrderStatus orderStatus = OrderStatus.values()[changeStatus.getStatus()];
+        OrderStatus orderStatus = OrderStatus.valueOf(changeStatus.getStatus());
         orderService.changeStatus(changeStatus.getId(), orderStatus);
         return new ResponseEntity(HttpStatus.ACCEPTED);
     }
     @PostMapping("api/v1/change_priority")
     public ResponseEntity changePriority(@RequestBody ChangePriority prior){
-        Priority priority = Priority.values()[prior.getPriority()];
+        Priority priority = Priority.valueOf(prior.getPriority());
         orderService.changePriority(prior.getId(), priority);
         return new ResponseEntity(HttpStatus.ACCEPTED);
     }

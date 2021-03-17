@@ -4,13 +4,13 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 public class ChangeStatus {
     private int id;
-    private int status;
+    private String status;
 
     public int getId() {
         return id;
     }
     @JsonDeserialize
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 }

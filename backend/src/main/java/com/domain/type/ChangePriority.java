@@ -4,13 +4,13 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 public class ChangePriority {
     private int id;
-    private int priority;
+    private String priority;
 
     public int getId() {
         return id;
     }
     @JsonDeserialize
-    public int getPriority() {
+    public String getPriority() {
         return priority;
     }
 }
