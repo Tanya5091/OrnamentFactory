@@ -34,12 +34,12 @@ public class UserEntity {
             inverseJoinColumns = @JoinColumn(name = "permission_id")
     )
     private List<PermissionEntity> permissions;
-//    @OneToMany
-//    @JoinTable(
-//            name = "user_to_ordertables",
-//            joinColumns = @JoinColumn(name = "user_id"),
-//            inverseJoinColumns = @JoinColumn(name = "id")
-//    )
-//    private List<OrderEntity> orders;
+    @OneToMany
+    @JoinTable(
+            name = "user_to_ordertables",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "id")
+    )
+    private List<OrderEntity> orders;
 
 }

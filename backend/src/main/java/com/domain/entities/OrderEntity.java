@@ -67,11 +67,11 @@ public class OrderEntity {
     }
 
 
-//    @ManyToOne
-//    @JoinTable(
-//            name = "ordertable_to_user",
-//            joinColumns = @JoinColumn(name = "id"),
-//            inverseJoinColumns = @JoinColumn(name = "user_id")
-//    )
-//    private UserEntity user;
+    @ManyToOne
+    @JoinTable(
+            name = "ordertable_to_user",
+            joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private UserEntity user;
 }

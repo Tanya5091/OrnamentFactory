@@ -32,9 +32,9 @@ public class MainApp {
 //        orderService.createOrder(orderDTO);
 
 //        System.out.println(orderService.findOrderByName("TEST TOY"));
-        System.out.println(userService.findByLogin("sales"));
-        System.out.println(userService.findByLogin("salesM"));
-        System.out.println(userService.findByLogin("admin"));
-        System.out.println();
+//        System.out.println(userService.findByLogin("sales"));
+//        System.out.println(userService.findByLogin("salesM"));
+//        System.out.println(userService.findByLogin("admin"));
+//        System.out.println();
     }
 }
