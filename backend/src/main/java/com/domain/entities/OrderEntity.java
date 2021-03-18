@@ -62,9 +62,9 @@ public class OrderEntity {
         return status;
     }
 
-    public int getId() {
-        return id;
-    }
+//    public Integer getId() {
+//        return id;
+//    }
 
 
     @ManyToOne

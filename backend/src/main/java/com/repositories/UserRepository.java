@@ -23,6 +23,11 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer> {
 
     void deleteUserEntityByLogin(final String login);
 
+    @Query("SELECT orderEnt FROM OrderEntity orderEnt "
+            + "JOIN orderEnt.user user "
+            + "WHERE user.id = :id")
+    List<OrderEntity> getUserOrders(@Param("id") int userId);
+
 //    @Query("SELECT order FROM OrderEntity order "
 //            + "JOIN order.user user "
 //            + "WHERE user.id = :id")

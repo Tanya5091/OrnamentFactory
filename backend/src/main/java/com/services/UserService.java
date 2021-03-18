@@ -68,5 +68,23 @@ public class UserService {
     @Transactional
     public void deleteUserByLogin(final String login){  userRepository.deleteUserEntityByLogin(login);}
 
+    public List<OrderEntity> getUserOrders(int userId) {
+        return userRepository.getUserOrders(userId);
+    }
+    public void addOrder(final OrderEntity order, final int id) {
+        Optional<UserEntity> user = findById(id);
+        if (user.isPresent()) {
+            UserEntity us = user.get();
+            List<OrderEntity> orders = getUserOrders(id);
+            orders.add(order);
+            us.setOrders(orders);
+            save(us);
+        }
+    }
+
+    public List<UserEntity> getUsers(){
+        return userRepository.findAll();
+    }
+
 //    public List<OrderEntity> findUserOrders(int id) { return userRepository.findOrdersById(id);}
 }

@@ -26,4 +26,8 @@ public class PermissionService {
     public PermissionEntity saveManagerPermission() {
         return permissionRepository.save(PermissionEntity.builder().permission(Permission.MANAGER).build());
     }
+
+    public PermissionEntity getPermissionByName(String name){
+        return permissionRepository.findByPermission(Permission.valueOf(name));
+    }
 }

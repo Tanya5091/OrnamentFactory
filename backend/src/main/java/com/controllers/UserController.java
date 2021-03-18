@@ -4,9 +4,11 @@ package com.controllers;
 import com.domain.entities.OrderEntity;
 import com.domain.entities.PermissionEntity;
 import com.domain.entities.UserEntity;
+import com.domain.type.OrderStatus;
 import com.dto.LoginDTO;
 import com.dto.OrderDTO;
 import com.dto.RegistrationDTO;
+import com.services.PermissionService;
 import com.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.h2.engine.User;
@@ -30,6 +32,7 @@ import static org.springframework.http.ResponseEntity.ok;
 public class UserController {
 //
     private final UserService userService;
+    private final PermissionService permissionService;
 
     @PostMapping("/api/v1/login")
     public HashMap<String, String> login(@Valid @RequestBody final LoginDTO user) {
@@ -108,6 +111,35 @@ public class UserController {
 
         return new ResponseEntity(Collections.singletonList("OK"), HttpStatus.CREATED);
     }
+
+    @GetMapping("/api/v1/userOrders")
+    public ResponseEntity<List<OrderDTO>> getUserOrders(@RequestBody  int userId) {
+
+        List<OrderEntity> orders = userService.getUserOrders(userId);
+        List<OrderDTO> response = new ArrayList<>();
+        for( OrderEntity o : orders)
+        {
+
+            response.add(new OrderDTO(o.getToyName(), o.getQuantity(), o.getPriority(), o.getDeadline(), o.getStatus().toString(), o.getId()));
+        }
+        return new ResponseEntity(response, HttpStatus.OK);
+    }
+
+    @GetMapping("api/v1/get_sales_man")
+    public ResponseEntity<List<UserEntity>> getSalesManagers(){
+        List<UserEntity> users = userService.getUsers();
+        List<UserEntity> result = new ArrayList<>();
+        for (UserEntity user: users){
+            if(user.getPermissions().contains(permissionService.getPermissionByName("SALES_MANAGER"))){
+                result.add(user);
+            }
+        }
+        return new ResponseEntity(result, HttpStatus.OK);
+    }
+
+
+
+
 
 //    @GetMapping("/")
 //    public String home(Principal principal){

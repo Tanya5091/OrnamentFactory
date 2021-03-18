@@ -2,6 +2,7 @@ package com.services;
 
 
 import com.domain.entities.OrderEntity;
+import com.domain.entities.UserEntity;
 import com.domain.type.OrderStatus;
 import com.domain.type.Priority;
 import com.dto.OrderDTO;
@@ -19,40 +20,40 @@ import java.util.Optional;
 public class OrderService {
     private final OrderRepository orderRepository;
 
-        public OrderEntity save(final OrderEntity order){
+    public OrderEntity save(final OrderEntity order) {
         return orderRepository.save(order);
     }
-    public Optional<OrderEntity> findOrderById(final int id){
+
+    public Optional<OrderEntity> findOrderById(final int id) {
         return orderRepository.findById(id);
     }
 
-    public Optional<List<OrderEntity>> findOrderByName(final String name){
+    public Optional<List<OrderEntity>> findOrderByName(final String name) {
         return orderRepository.findByName(name);
     }
 
-    public boolean existById(final int id){
+    public boolean existById(final int id) {
         return orderRepository.existsById(id);
     }
 
-    public HttpStatus deleteOrder(final int id){
-        if(orderRepository.existsById(id)){
+    public HttpStatus deleteOrder(final int id) {
+        if (orderRepository.existsById(id)) {
             orderRepository.deleteById(id);
             return HttpStatus.OK;
-        }
-        else{
+        } else {
             return HttpStatus.NOT_FOUND;
         }
     }
 
-    public void changeStatus(int id, OrderStatus status){
+    public void changeStatus(int id, OrderStatus status) {
         orderRepository.setOrderStatus(id, status);
     }
 
-    public void changePriority(int id, Priority priority){
+    public void changePriority(int id, Priority priority) {
         orderRepository.setOrderPriority(id, priority);
     }
 
-    public OrderEntity createOrder(final OrderDTO orderDTO){
+    public OrderEntity createOrder(final OrderDTO orderDTO) {
         return save(OrderEntity.builder()
                 .toyName(orderDTO.getToyName())
                 .quantity(orderDTO.getQuantity())
@@ -62,14 +63,21 @@ public class OrderService {
                 .build());
     }
 
-//    public List<OrderEntity> getAllOrders(){
+    //    public List<OrderEntity> getAllOrders(){
 //            return orderRepository.getAllOrders();
 //    }
-    public List<OrderEntity> getAllOrders(){
-            return orderRepository.findAll();
+    public List<OrderEntity> getAllOrders() {
+        return orderRepository.findAll();
 //            return orderRepository.getAllOrders();
     }
 
 
-
+//    public void addUser(int orderid, UserEntity userEntity) {
+//        Optional<OrderEntity> order = findOrderById(orderid);
+//        if (order.isPresent()) {
+//            OrderEntity or = order.get();
+//            or.setUser(userEntity);
+//            save(or);
+//        }
+//    }
 }

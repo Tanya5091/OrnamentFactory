@@ -11,6 +11,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.Optional;
 
 @Data
 @NoArgsConstructor
@@ -33,6 +34,15 @@ public class OrderDTO {
 
     private String status;
 
+    public OrderDTO(String toyName, int quantity, Priority priority, Date deadline) {
+        this.id = -1;
+        this.status = "NEW";
+        this.deadline = deadline;
+        this.priority = priority;
+        this.quantity = quantity;
+        this.toyName = toyName;
+    }
+
     public OrderDTO(String toyName, int quantity, Priority priority, Date deadline, String status, int id) {
         this.deadline = deadline;
         this.priority = priority;
@@ -41,6 +51,8 @@ public class OrderDTO {
         this.id = id;
         this.status = status;
     }
+
+
 
     public Integer getId() {
         return id;
