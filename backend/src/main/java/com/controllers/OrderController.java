@@ -13,10 +13,7 @@ import org.aspectj.weaver.ast.Or;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,8 +44,8 @@ public class OrderController {
         return new ResponseEntity(HttpStatus.ACCEPTED);
     }
 
-    @PostMapping("api/v1/delete_order")
-    public ResponseEntity deleteOrder(@RequestBody int id){
+    @PostMapping("api/v1/delete_order/{id}")
+    public ResponseEntity deleteOrder(@PathVariable int id){
         HttpStatus httpStatus = orderService.deleteOrder(id);
         return new ResponseEntity(httpStatus);
     }

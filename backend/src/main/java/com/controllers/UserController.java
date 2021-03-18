@@ -63,8 +63,8 @@ public class UserController {
 
     }
 
-    @GetMapping("/api/v1/get_user")
-    public ResponseEntity<UserEntity> getUserById(@RequestBody  int id){
+    @GetMapping("/api/v1/get_user/{id}")
+    public ResponseEntity<UserEntity> getUserById(@PathVariable  int id){
         Optional<UserEntity> userOpt = userService.findById(id);
         if(userOpt.isPresent()) {
             return new ResponseEntity(userOpt.get(), HttpStatus.OK);
@@ -112,8 +112,8 @@ public class UserController {
         return new ResponseEntity(Collections.singletonList("OK"), HttpStatus.CREATED);
     }
 
-    @GetMapping("/api/v1/userOrders")
-    public ResponseEntity<List<OrderDTO>> getUserOrders(@RequestBody  int userId) {
+    @GetMapping("/api/v1/userOrders/{userId}")
+    public ResponseEntity<List<OrderDTO>> getUserOrders(@PathVariable  int userId) {
 
         List<OrderEntity> orders = userService.getUserOrders(userId);
         List<OrderDTO> response = new ArrayList<>();
@@ -125,12 +125,12 @@ public class UserController {
         return new ResponseEntity(response, HttpStatus.OK);
     }
 
-    @GetMapping("api/v1/get_sales_man")
-    public ResponseEntity<List<UserEntity>> getSalesManagers(){
+    @GetMapping("api/v1/get_users/{role}")
+    public ResponseEntity<List<UserEntity>> getUsersByRole(@PathVariable String role){
         List<UserEntity> users = userService.getUsers();
         List<UserEntity> result = new ArrayList<>();
         for (UserEntity user: users){
-            if(user.getPermissions().contains(permissionService.getPermissionByName("SALES_MANAGER"))){
+            if(user.getPermissions().contains(permissionService.getPermissionByName(role))){
                 result.add(user);
             }
         }

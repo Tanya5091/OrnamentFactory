@@ -40,8 +40,8 @@ public class MaterialController {
         return materialService.subQuantity(id, quantity);
     }
 
-    @PostMapping("api/v1/delete_material")
-    public ResponseEntity delete(@RequestBody int id){
+    @PostMapping("api/v1/delete_material/{id}")
+    public ResponseEntity delete(@PathVariable int id){
         materialService.delete(id);
         return new ResponseEntity(HttpStatus.ACCEPTED);
     }
