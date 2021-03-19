@@ -23,6 +23,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import {MenuModule} from 'primeng/menu';
 import {MenuItem, MessageService} from 'primeng/api';
+import {OrdersService} from "./servises/orders.service";
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import {MenuItem, MessageService} from 'primeng/api';
     MenuModule
   ],
   providers: [
-    MessageService
+    MessageService,
+    OrdersService
   ],
   bootstrap: [AppComponent]
 })

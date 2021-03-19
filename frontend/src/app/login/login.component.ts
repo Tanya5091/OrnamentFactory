@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    localStorage.clear();
     this.loginForm = this.formBuilder.group({
       login: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(8)]],
@@ -34,12 +35,17 @@ export class LoginComponent implements OnInit {
       password: this.loginForm.get('password').value
     };
     this.loading = true;
-    this.httpClient.post('/api/v1/login', user).subscribe(res => {
-      alert('login success!');
-      this.router.navigate(['worker-page']);
+    this.httpClient.post('/api/v1/login', user).subscribe((res: any) => {
+      localStorage.setItem('user', JSON.stringify(res));
+      if (res.role === 'SALES_MANAGER') {
+        this.router.navigate(['sales-manager']);
+      } else if (res.role === 'MANAGER'){
+        this.router.navigate(['unit-manager-page']);
+      } else if (res.role === 'FACTORY_WORKER'){
+        this.router.navigate(['worker-page']);
+      }
     }, error1 => {
       alert('login ERROR!');
-      // this.router.navigate(['home']);
       this.loading = false;
     });
   }

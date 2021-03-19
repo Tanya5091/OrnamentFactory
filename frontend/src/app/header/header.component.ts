@@ -32,6 +32,10 @@ export class HeaderComponent implements OnInit {
           {
             label: 'Unit Manager',
             routerLink: '/unit-manager-page'
+          },
+          {
+            label: 'Logout',
+            routerLink: '/login'
           }
         ]}
     ];

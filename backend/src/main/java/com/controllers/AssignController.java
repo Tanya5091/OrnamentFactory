@@ -25,11 +25,13 @@ public class AssignController {
     public ResponseEntity addUserOrder(@PathVariable int userid, @PathVariable int orderid) {
         Optional<OrderEntity> orderEntity = orderService.findOrderById(orderid);
         if (orderEntity.isPresent()) {
-            userService.addOrder(orderEntity.get(), userid);
+            OrderEntity o = orderEntity.get();
+            o.setStatus(OrderStatus.ACTIVE);
+            userService.addOrder(o, userid);
 //            Optional<UserEntity> userEntity = userService.findById(userid);
 //            if (userEntity.isPresent()) {
 //                orderService.addUser(orderid, userEntity.get());
-                return new ResponseEntity(HttpStatus.ACCEPTED);
+            return new ResponseEntity(HttpStatus.ACCEPTED);
 //            } else {
 //                return new ResponseEntity(HttpStatus.BAD_REQUEST);
 //            }

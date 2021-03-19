@@ -71,11 +71,16 @@ public class UserService {
     public List<OrderEntity> getUserOrders(int userId) {
         return userRepository.getUserOrders(userId);
     }
+
+    @Transactional
     public void addOrder(final OrderEntity order, final int id) {
         Optional<UserEntity> user = findById(id);
         if (user.isPresent()) {
             UserEntity us = user.get();
-            List<OrderEntity> orders = getUserOrders(id);
+            List<OrderEntity> orders = us.getOrders();
+            for (OrderEntity o: orders){
+                System.out.println(o.getToyName());
+            }
             orders.add(order);
             us.setOrders(orders);
             save(us);

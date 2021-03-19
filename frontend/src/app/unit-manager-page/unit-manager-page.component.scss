@@ -16,8 +16,11 @@
 
 .collumn-body {
   border-right: 3px solid rgba(0, 0, 0, 0.2);
+  cursor: pointer;
 
-  height: 100%;
+  &.selected {
+    border: 2px green solid;
+  }
 }
 
 .page-collumn:first-of-type {
@@ -31,9 +34,11 @@
   margin: auto;
   margin-bottom: 4px;
 }
+
 .avatar-image {
   border-radius: 50%;
 }
+
 .avatar-text {
   font-size: 22px;
   line-height: 20px;

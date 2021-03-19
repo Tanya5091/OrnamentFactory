@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { OrderModel } from '../models/order-model.interface';
+import {Component, OnInit, Input} from '@angular/core';
+import {OrderModel, OrderStatus} from '../models/order-model.interface';
+import {OrdersService} from "../servises/orders.service";
 
 @Component({
   selector: 'app-order-card',
@@ -8,30 +9,48 @@ import { OrderModel } from '../models/order-model.interface';
 })
 export class OrderCardComponent implements OnInit {
 
-  @Input() newOrder: boolean = false
+  @Input() newOrder: boolean = false;
 
-  @Input() withDelete: boolean = false
+  @Input() withDelete: boolean = false;
 
-  @Input() order: OrderModel 
-  // = {        // mock-data
-  //   name: "Кульки з синім напиленням",
-  //   status: 2,
-  //   dueDate: `${new Date().getDate().toString()}.${new Date().getMonth()}.${new Date().getFullYear()}`,
-  //   quantity: 100
-  // };
+  @Input() order: OrderModel;
 
-  statusMapping: Record<number,string> ={
-    1: 'green',
-    2: 'yellow',
-    3: 'red',
-    4: 'Прийнято'
+  active = OrderStatus.ACTIVE;
+  done = OrderStatus.DONE;
+
+  statusMapping: Record<number, string> = {
+    1: 'GREEN',
+    2: 'YELLOW',
+    3: 'RED',
+    4: 'Виконано'
+  };
+
+  @Input() worker: boolean = false;
+  @Input() workerId: number;
+
+  constructor(private orderService: OrdersService) {
   }
-
-  @Input() worker : boolean = false
-
-  constructor() { }
 
   ngOnInit(): void {
   }
 
+  deleteOrder(id: number) {
+    this.orderService.deleteOrder(id).subscribe(res => {
+      console.log(res);
+    })
+  }
+
+  changeOrderStatus(id: number) {
+    this.orderService.changeStatus(id).subscribe(res => {
+      console.log(res);
+      this.orderService.assignOrderToDone.next({order_id: id});
+    })
+  }
+
+  assignToWorker() {
+    this.orderService.assignOrderToWorker(this.workerId, this.order.id).subscribe(res => {
+      console.log(res);
+      this.orderService.assignUserOrder.next({user_id: this.workerId, order_id: this.order.id});
+    });
+  }
 }

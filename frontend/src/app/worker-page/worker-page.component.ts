@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { OrderModel } from '../models/order-model.interface';
+import {Component, Input, OnInit} from '@angular/core';
+import {OrderModel, OrderStatus} from '../models/order-model.interface';
+import {OrdersService} from "../servises/orders.service";
+import {MaterialModel} from "../models/material-model.interface";
 
 @Component({
   selector: 'app-worker-page',
@@ -8,36 +10,43 @@ import { OrderModel } from '../models/order-model.interface';
 })
 export class WorkerPageComponent implements OnInit {
 
-  @Input() orders: Array<OrderModel> = [
-    {
-      name: "Кульки з синім напиленням",
-    status: 3,
-    dueDate: `${new Date().getDate().toString()}.${new Date().getMonth()}.${new Date().getFullYear()}`,
-    quantity: 100
-    },
-    {
-      name: "Кульки з зеленим напиленням",
-    status: 2,
-    dueDate: `${new Date().getDate().toString()}.${new Date().getMonth()}.${new Date().getFullYear()}`,
-    quantity: 300
-    },
-    {
-      name: "Кульки з білим напиленням",
-    status: 4,
-    dueDate: `${new Date().getDate().toString()}.${new Date().getMonth()}.${new Date().getFullYear()}`,
-    quantity: 200
-    }
-  ]
+  orders: Array<OrderModel>;
 
-  activeOrders: Array<OrderModel> = this.orders.filter((item) => item.status < 4)
-  doneOrders: Array<OrderModel> = this.orders.filter((item) => item.status === 4)
+  activeOrders: Array<OrderModel>;
+  doneOrders: Array<OrderModel>;
 
-  collapseActive : boolean = false
+  collapseActive: boolean = false
   collapseDone: boolean = false
+  materials: Array<MaterialModel>;
 
-  constructor() { }
+  constructor(private ordersService: OrdersService) {
+  }
 
   ngOnInit(): void {
+    // this.ordersService.getAllOrders().subscribe(res => {
+    //   this.orders = res;
+    //   this.activeOrders = this.orders.filter((item) => item.status == OrderStatus.ACTIVE);
+    //   this.doneOrders = this.orders.filter((item) => item.status == OrderStatus.DONE);
+    // });
+    this.ordersService.assignOrderToDone.asObservable().subscribe(res => {
+      if (res) {
+        const index = this.activeOrders.findIndex(value => value.id === res.order_id);
+        let order = this.activeOrders.find(el => el.id === res.order_id);
+        order.status = OrderStatus.DONE;
+        this.activeOrders.splice(index, 1);
+        this.doneOrders.push(order);
+      }
+    });
+    const user = JSON.parse(localStorage.getItem('user'));
+    this.ordersService.getUserById(user.id).subscribe(res => {
+      this.activeOrders = res.orders.filter((item) => item.status == OrderStatus.ACTIVE);
+      this.doneOrders = res.orders.filter((item) => item.status == OrderStatus.DONE);
+      // this.doneOrders = res.orders;
+    });
+    this.ordersService.getAllMaterials().subscribe(res => {
+      this.materials = res;
+    });
+
   }
 
 }

@@ -2,7 +2,7 @@
   <div class="field-container field-style"><span>Кульки</span></div>
 
   <div class="field-container">
-    <select formControlName="ballsTypes" id="ballsTypes" class="field-style">
+    <select formControlName="toyName" id="ballsTypes" class="field-style" required>
       <option
         *ngFor="let type of ballsTypes; let i = index"
         [value]="type.name"
@@ -19,16 +19,19 @@
       name="quantity"
       placeholder="Кількість"
       class="field-style"
+      required
+      [min]="1"
     />
   </div>
 
   <div class="field-container">
     <input
       type="date"
-      name="dueDate"
-      formControlName="dueDate"
+      name="deadline"
+      formControlName="deadline"
       placeholder="Дедлайн"
       class="field-style"
+      required
     />
   </div>
 
@@ -36,19 +39,19 @@
     <div class="radio-header">Пріоритет</div>
 
     <div class="form_radio_btn">
-      <input id="radio-1" type="radio" name="radio" value="1" checked />
+      <input id="radio-1" type="radio" (click)="onPriority(first)" name="radio" [value]="first" checked/>
       <label for="radio-1" class="green">  </label>
     </div>
 
     <div class="form_radio_btn">
-      <input id="radio-2" type="radio" name="radio" value="2" />
+      <input id="radio-2" type="radio" (click)="onPriority(second)"  name="radio" [value]="second"/>
       <label for="radio-2" class="yellow">  </label>
     </div>
 
     <div class="form_radio_btn">
-      <input id="radio-3" type="radio" name="radio" value="3" />
+      <input id="radio-3" type="radio" (click)="onPriority(third)"  name="radio" [value]="third"/>
       <label for="radio-3" class="red">  </label>
     </div>
   </div>
-  <div class="submit-order material-icons" (click)="submit()">done</div>
+  <button class="submit-order material-icons" [disabled]="form.invalid">done</button>
 </form>

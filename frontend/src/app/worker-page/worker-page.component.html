@@ -17,10 +17,8 @@
     <div class="collumn-header">Замовлення</div>
     <div class="collumn-body">
       <div>
-        <div
-          class="order-group-header"
-          (click)="collapseActive = !collapseActive"
-        >
+        <div class="order-group-header"
+          (click)="collapseActive = !collapseActive">
           Активні
           <span *ngIf="collapseActive; else elseBlock" class="material-icons">
             keyboard_arrow_right
@@ -28,8 +26,7 @@
           <ng-template #elseBlock>
             <span class="material-icons">
               keyboard_arrow_down
-            </span></ng-template
-          >
+            </span></ng-template>
         </div>
         <div *ngIf="!collapseActive">
           <div *ngFor="let order of activeOrders">
@@ -49,8 +46,7 @@
           <ng-template #elseBlock>
             <span class="material-icons">
               keyboard_arrow_down
-            </span></ng-template
-          >
+            </span></ng-template>
         </div>
         <div *ngIf="!collapseDone">
           <div *ngFor="let order of doneOrders">
@@ -66,7 +62,7 @@
   <div class="page-collumn">
     <div class="collumn-header">Матеріали</div>
     <div class="materials-table-container">
-      <app-materials-table></app-materials-table>
+      <app-materials-table [tableData]="materials"></app-materials-table>
     </div>
   </div>
 </div>

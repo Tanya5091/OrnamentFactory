@@ -8,6 +8,7 @@ import com.domain.type.OrderStatus;
 import com.dto.LoginDTO;
 import com.dto.OrderDTO;
 import com.dto.RegistrationDTO;
+import com.dto.UserDTO;
 import com.services.PermissionService;
 import com.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -64,10 +65,10 @@ public class UserController {
     }
 
     @GetMapping("/api/v1/get_user/{id}")
-    public ResponseEntity<UserEntity> getUserById(@PathVariable  int id){
+    public ResponseEntity<UserDTO> getUserById(@PathVariable  int id){
         Optional<UserEntity> userOpt = userService.findById(id);
         if(userOpt.isPresent()) {
-            return new ResponseEntity(userOpt.get(), HttpStatus.OK);
+            return new ResponseEntity(new UserDTO(userOpt.get()), HttpStatus.OK);
         }
         else{
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
@@ -126,12 +127,12 @@ public class UserController {
     }
 
     @GetMapping("api/v1/get_users/{role}")
-    public ResponseEntity<List<UserEntity>> getUsersByRole(@PathVariable String role){
+    public ResponseEntity<List<UserDTO>> getUsersByRole(@PathVariable String role){
         List<UserEntity> users = userService.getUsers();
-        List<UserEntity> result = new ArrayList<>();
+        List<UserDTO> result = new ArrayList<>();
         for (UserEntity user: users){
             if(user.getPermissions().contains(permissionService.getPermissionByName(role))){
-                result.add(user);
+                result.add(new UserDTO(user));
             }
         }
         return new ResponseEntity(result, HttpStatus.OK);

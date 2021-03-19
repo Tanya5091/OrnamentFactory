@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { OrderModel } from '../models/order-model.interface';
+import {Component, OnInit} from '@angular/core';
+import {OrderModel, OrderStatus} from '../models/order-model.interface';
+import {OrdersService} from "../servises/orders.service";
 
 @Component({
   selector: 'app-sales-manager-page',
@@ -8,37 +9,24 @@ import { OrderModel } from '../models/order-model.interface';
 })
 export class SalesManagerPageComponent implements OnInit {
 
-  @Input() orders: Array<OrderModel> = [
-    {
-      name: "Кульки з синім напиленням",
-    status: 3,
-    dueDate: `${new Date().getDate().toString()}.${new Date().getMonth()}.${new Date().getFullYear()}`,
-    quantity: 100
-    },
-    {
-      name: "Кульки з зеленим напиленням",
-    status: 2,
-    dueDate: `${new Date().getDate().toString()}.${new Date().getMonth()}.${new Date().getFullYear()}`,
-    quantity: 300
-    },
-    {
-      name: "Кульки з білим напиленням",
-    status: 4,
-    dueDate: `${new Date().getDate().toString()}.${new Date().getMonth()}.${new Date().getFullYear()}`,
-    quantity: 200
-    }
-  ]
+  orders: Array<OrderModel>;
 
-  activeOrders: Array<OrderModel> = this.orders.filter((item) => item.status < 4)
-  doneOrders: Array<OrderModel> = this.orders.filter((item) => item.status === 4)
+  activeOrders: Array<OrderModel>;
+  doneOrders: Array<OrderModel>;
 
-  collapseActive : boolean = false
+  collapseActive: boolean = false
   collapseDone: boolean = false
 
 
-  constructor() { }
+  constructor(private ordersService: OrdersService) {
+  }
 
   ngOnInit(): void {
+    this.ordersService.getAllOrders().subscribe(res => {
+      this.orders = res;
+      this.activeOrders = this.orders.filter((item) => item.status == OrderStatus.ACTIVE);
+      this.doneOrders = this.orders.filter((item) => item.status == OrderStatus.DONE);
+    });
   }
 
 }

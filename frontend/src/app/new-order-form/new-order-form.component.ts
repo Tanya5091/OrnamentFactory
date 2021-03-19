@@ -1,7 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { BallTypeModel } from '../models/ball-type-model.interface';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { of } from 'rxjs';
+import {Component, Input, OnInit} from '@angular/core';
+import {BallTypeModel} from '../models/ball-type-model.interface';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {of} from 'rxjs';
+import {NewOrderModel, Priority} from "../models/order-model.interface";
+import {OrdersService} from "../servises/orders.service";
 
 @Component({
   selector: 'app-new-order-form',
@@ -18,19 +20,24 @@ export class NewOrderFormComponent implements OnInit {
     {name: 'З білим напиленням'},
   ]
 
+  first: Priority = Priority.GREEN;
+  second: Priority = Priority.YELLOW;
+  third: Priority = Priority.RED;
+
   form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+              private orderService: OrdersService) {
     this.form = this.formBuilder.group({
-      ballsTypes: [''],
+      toyName: '',
       quantity: null,
-      dueDate: null,
-      priority: null
-    });
+      deadline: null,
+      priority: this.first
+    } as NewOrderModel);
 
-    of(this.getTypes()).subscribe(ballsTypes => {
-      this.ballsTypes = ballsTypes;
-      this.form.controls.ballsTypes.patchValue(this.ballsTypes[0].name);
+    of(this.getTypes()).subscribe(toyName => {
+      this.ballsTypes = toyName;
+      this.form.controls.toyName.patchValue(this.ballsTypes[0].name);
     });
 
   }
@@ -47,9 +54,15 @@ export class NewOrderFormComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.form.value);
+    this.orderService.createOrder(this.form.value).subscribe(res => {
+      console.log(res);
+    });
   }
+
   ngOnInit(): void {
   }
 
+  onPriority(priority: Priority) {
+    this.form.controls.priority.patchValue(priority);
+  }
 }

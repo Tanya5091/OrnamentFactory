@@ -8,13 +8,18 @@
 .submit-order {
   color: black;
   background-color: rgb(92 143 221);
-  font-size: 40px;
+  //font-size: 40px;
+  border: none;
   width: 40px;
   height: 40px;
   border-radius: 10px;
   cursor: pointer;
   position: relative;
   left: 330px;
+
+  &:disabled {
+    background-color: #abafb5;
+  }
 }
 
 .field-container {
@@ -36,9 +41,11 @@
   display: inline-block;
   margin-right: 10px;
 }
+
 .form_radio_btn input[type="radio"] {
   display: none;
 }
+
 .form_radio_btn label {
   display: inline-block;
   cursor: pointer;
