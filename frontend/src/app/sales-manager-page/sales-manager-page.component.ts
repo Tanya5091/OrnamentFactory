@@ -9,6 +9,7 @@ import {OrdersService} from "../servises/orders.service";
 })
 export class SalesManagerPageComponent implements OnInit {
 
+  newOrders: Array<OrderModel>;
   orders: Array<OrderModel>;
 
   activeOrders: Array<OrderModel>;
@@ -16,7 +17,7 @@ export class SalesManagerPageComponent implements OnInit {
 
   collapseActive: boolean = false
   collapseDone: boolean = false
-
+  newOrdersCollapse: boolean = false
 
   constructor(private ordersService: OrdersService) {
   }
@@ -26,6 +27,7 @@ export class SalesManagerPageComponent implements OnInit {
       this.orders = res;
       this.activeOrders = this.orders.filter((item) => item.status == OrderStatus.ACTIVE);
       this.doneOrders = this.orders.filter((item) => item.status == OrderStatus.DONE);
+      this.newOrders = this.orders.filter((item) => item.status == OrderStatus.NEW);
     });
   }
 
