@@ -33,7 +33,7 @@ public class OrderDTO {
     private Date deadline;
 
     private String status;
-
+    private int salesID;
     public OrderDTO(String toyName, int quantity, Priority priority, Date deadline) {
         this.id = -1;
         this.status = "NEW";
@@ -43,13 +43,14 @@ public class OrderDTO {
         this.toyName = toyName;
     }
 
-    public OrderDTO(String toyName, int quantity, Priority priority, Date deadline, String status, int id) {
+    public OrderDTO(String toyName, int quantity, Priority priority, Date deadline, String status, int id, int salesID) {
         this.deadline = deadline;
         this.priority = priority;
         this.quantity = quantity;
         this.toyName = toyName;
         this.id = id;
         this.status = status;
+        this.salesID = salesID;
     }
 
 
@@ -79,4 +80,7 @@ public class OrderDTO {
         return deadline;
     }
 
+    public int getSalesID() {
+        return salesID;
+    }
 }

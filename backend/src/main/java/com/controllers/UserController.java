@@ -121,7 +121,7 @@ public class UserController {
         for( OrderEntity o : orders)
         {
 
-            response.add(new OrderDTO(o.getToyName(), o.getQuantity(), o.getPriority(), o.getDeadline(), o.getStatus().toString(), o.getId()));
+            response.add(new OrderDTO(o.getToyName(), o.getQuantity(), o.getPriority(), o.getDeadline(), o.getStatus().toString(), o.getId(), o.getSales().getId()));
         }
         return new ResponseEntity(response, HttpStatus.OK);
     }

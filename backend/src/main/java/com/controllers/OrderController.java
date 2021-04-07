@@ -13,6 +13,7 @@ import org.aspectj.weaver.ast.Or;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -25,11 +26,11 @@ public class OrderController {
 
     private final OrderService orderService;
 
-    @PostMapping("api/v1/create_order")
-    public ResponseEntity create(@RequestBody final OrderDTO orderDTO){
-        orderService.createOrder(orderDTO);
-        return new ResponseEntity(HttpStatus.CREATED);
-    }
+//    @PostMapping("api/v1/create_order")
+//    public ResponseEntity create(@RequestBody final OrderDTO orderDTO){
+//        orderService.createOrder(orderDTO);
+//        return new ResponseEntity(HttpStatus.CREATED);
+//    }
 
     @PostMapping("api/v1/change_status")
     public ResponseEntity changeStatus(@RequestBody ChangeStatus changeStatus){
@@ -61,7 +62,11 @@ public class OrderController {
         List<OrderEntity> orders = orderService.getAllOrders();
         List<OrderDTO> res = new ArrayList<>();
         for(OrderEntity ord : orders){
-            res.add(new OrderDTO(ord.getToyName(), ord.getQuantity(), ord.getPriority(), ord.getDeadline(), ord.getStatus().toString(), ord.getId()));
+            int id=0;
+            if(ord.getSales() != null){
+                id = ord.getSales().getId();
+            }
+            res.add(new OrderDTO(ord.getToyName(), ord.getQuantity(), ord.getPriority(), ord.getDeadline(), ord.getStatus().toString(), ord.getId(), id));
         }
         return new ResponseEntity(res, HttpStatus.OK);
     }

@@ -42,4 +42,12 @@ public class UserEntity {
     )
     private List<OrderEntity> orders;
 
+    @OneToMany
+    @JoinTable(
+            name = "sales_to_ordertables",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "id")
+    )
+    private List<OrderEntity> salesOrders;
+
 }

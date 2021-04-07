@@ -53,14 +53,15 @@ public class OrderService {
         orderRepository.setOrderPriority(id, priority);
     }
 
-    public OrderEntity createOrder(final OrderDTO orderDTO) {
-        return save(OrderEntity.builder()
+    public OrderEntity createOrder(final OrderDTO orderDTO, final UserEntity u) {
+        OrderEntity o = OrderEntity.builder()
                 .toyName(orderDTO.getToyName())
                 .quantity(orderDTO.getQuantity())
                 .priority(orderDTO.getPriority())
                 .deadline(orderDTO.getDeadline())
-                .status(OrderStatus.NEW)
-                .build());
+                .status(OrderStatus.NEW).build();
+        o.setSales(u);
+        return save(o);
     }
 
     //    public List<OrderEntity> getAllOrders(){

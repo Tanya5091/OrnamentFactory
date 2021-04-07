@@ -74,4 +74,11 @@ public class OrderEntity {
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
     private UserEntity user;
+    @ManyToOne
+    @JoinTable(
+            name = "ordertable_to_sales",
+            joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private UserEntity sales;
 }
