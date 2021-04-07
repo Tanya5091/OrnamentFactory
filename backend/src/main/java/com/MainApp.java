@@ -36,5 +36,6 @@ public class MainApp {
 //        System.out.println(userService.findByLogin("salesM"));
 //        System.out.println(userService.findByLogin("admin"));
 //        System.out.println();
+//        System.out.println(orderService.getSalesOrders(431));
     }
 }

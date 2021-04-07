@@ -72,6 +72,12 @@ public class OrderService {
 //            return orderRepository.getAllOrders();
     }
 
+    public List<OrderEntity> getSalesOrders(int id) {
+        List<OrderEntity>  orders=orderRepository.getAllOrders();
+        orders.removeIf(o -> o.getSales() == null || o.getSales().getId() != id);
+        return orders;
+    }
+
 
 //    public void addUser(int orderid, UserEntity userEntity) {
 //        Optional<OrderEntity> order = findOrderById(orderid);

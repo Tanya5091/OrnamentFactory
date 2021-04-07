@@ -50,7 +50,15 @@ public class OrderController {
         HttpStatus httpStatus = orderService.deleteOrder(id);
         return new ResponseEntity(httpStatus);
     }
-
+    @GetMapping("api/v1/getSalesOrders/{id}")
+    public ResponseEntity<List<OrderDTO>> getSalesOrders(@PathVariable int id){
+        List<OrderEntity> orders = orderService.getSalesOrders(id);
+        List<OrderDTO> res = new ArrayList<>();
+        for (OrderEntity o : orders){
+            res.add(new OrderDTO(o.getToyName(), o.getQuantity(), o.getPriority(), o.getDeadline(), o.getStatus().toString(), o.getId(), o.getSales().getId()));
+        }
+        return new ResponseEntity(res, HttpStatus.OK);
+    }
 //    @GetMapping("api/v1/get_orders")
 //    public List<OrderEntity> getAllOrders(){
 //        return orderService.getAllOrders( );
