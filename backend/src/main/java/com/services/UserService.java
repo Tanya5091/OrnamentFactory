@@ -87,6 +87,25 @@ public class UserService {
         }
     }
 
+    @Transactional
+    public void removeOrder(final OrderEntity order, final int id) {
+        Optional<UserEntity> user = findById(id);
+        if (user.isPresent()) {
+            UserEntity us = user.get();
+            List<OrderEntity> orders = us.getOrders();
+            try{
+                orders.remove(order);
+                us.setOrders(orders);
+                save(us);
+            }
+            catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+
+        }
+    }
+
+
     public List<UserEntity> getUsers(){
         return userRepository.findAll();
     }

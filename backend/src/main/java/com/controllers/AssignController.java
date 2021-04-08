@@ -41,6 +41,20 @@ public class AssignController {
         }
     }
 
+    @PostMapping("api/v1/unassignOrder/{userid}/{orderid}")
+    public ResponseEntity unassignOrder(@PathVariable int userid, @PathVariable int orderid){
+        Optional<OrderEntity> orderEntity = orderService.findOrderById(orderid);
+        if (orderEntity.isPresent()) {
+            OrderEntity o = orderEntity.get();
+            o.setStatus(OrderStatus.NEW);
+            userService.removeOrder(o, userid);
+            return new ResponseEntity(HttpStatus.ACCEPTED);
+        }
+        else{
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @PostMapping("api/v1/create_order")
     public ResponseEntity create( @RequestBody final OrderDTO orderDTO ){
         UserEntity u = userService.findById(orderDTO.getSalesID()).get();
