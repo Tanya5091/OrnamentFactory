@@ -10,9 +10,17 @@ import {HttpClient} from "@angular/common/http";
 })
 export class RegisterComponent implements OnInit {
 
+  public roles = [
+    {name: 'SALES MANAGER', code: 'SALES_MANAGER'},
+    {name: 'MANAGER', code: 'MANAGER'},
+    {name: 'WORKER', code: 'FACTORY_WORKER'},
+  ];
+
+
   public loginForm: FormGroup | undefined;
   public error = '';
   public loading = false;
+  selectedRole: string;
 
   constructor(
     private router: Router,
@@ -25,14 +33,17 @@ export class RegisterComponent implements OnInit {
     this.loginForm = this.formBuilder.group({
       login: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(8)]],
+      role: ['', Validators.required],
     });
   }
 
   onSubmit(): void {
     const user = {
       login: this.loginForm.get('login').value,
-      password: this.loginForm.get('password').value
+      password: this.loginForm.get('password').value,
+      permission: this.loginForm.get('role').value.code
     };
+    console.log(user);
     this.loading = true;
     this.httpClient.post('/api/v1/register', user).subscribe(res => {
       alert('register success!');

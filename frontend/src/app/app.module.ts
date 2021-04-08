@@ -4,7 +4,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
 import {HomeComponent} from './home/home.component';
@@ -24,7 +24,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {MenuModule} from 'primeng/menu';
 import {MenuItem, MessageService} from 'primeng/api';
 import {OrdersService} from "./servises/orders.service";
-
+import {DropdownModule} from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -51,7 +51,9 @@ import {OrdersService} from "./servises/orders.service";
     HttpClientModule,
     MatFormFieldModule,
     MatSelectModule,
-    MenuModule
+    MenuModule,
+    DropdownModule,
+    FormsModule
   ],
   providers: [
     MessageService,
