@@ -5,6 +5,26 @@
   <div class="page-collumn">
     <div class="collumn-header">Замовлення</div>
     <div class="collumn-body central-collumn">
+
+      <div>
+        <div class="order-group-header" (click)="newOrdersCollapse = !newOrdersCollapse">
+          Очікується
+          <span *ngIf="newOrdersCollapse; else elseBlock" class="material-icons">
+            keyboard_arrow_right
+          </span>
+          <ng-template #elseBlock>
+            <span class="material-icons"> keyboard_arrow_down </span>
+          </ng-template>
+        </div>
+        <div *ngIf="!newOrdersCollapse">
+          <div *ngFor="let order of newOrders">
+            <div class="order-container">
+              <app-order-card [order]="order" [newOrder]="true"></app-order-card>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div>
         <div
           class="order-group-header"
