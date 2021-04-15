@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {OrderModel, OrderStatus} from '../models/order-model.interface';
 import {OrdersService} from "../servises/orders.service";
 import {MaterialModel} from "../models/material-model.interface";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-worker-page',
@@ -9,6 +10,8 @@ import {MaterialModel} from "../models/material-model.interface";
   styleUrls: ['./worker-page.component.scss']
 })
 export class WorkerPageComponent implements OnInit {
+
+  validatingForm: FormGroup;
 
   orders: Array<OrderModel>;
 
@@ -28,6 +31,11 @@ export class WorkerPageComponent implements OnInit {
     //   this.activeOrders = this.orders.filter((item) => item.status == OrderStatus.ACTIVE);
     //   this.doneOrders = this.orders.filter((item) => item.status == OrderStatus.DONE);
     // });
+
+    this.validatingForm = new FormGroup({
+      newMatFormModalName: new FormControl('', Validators.required)
+    });
+
     this.ordersService.assignOrderToDone.asObservable().subscribe(res => {
       if (res) {
         const index = this.activeOrders.findIndex(value => value.id === res.order_id);
@@ -48,5 +56,14 @@ export class WorkerPageComponent implements OnInit {
     });
 
   }
+
+  get newMatFormModalName() {
+    return this.validatingForm.get('newMatFormModalName');
+  }
+
+  public createMaterial(){
+    // add logic that creates new material
+  }
+
 
 }
