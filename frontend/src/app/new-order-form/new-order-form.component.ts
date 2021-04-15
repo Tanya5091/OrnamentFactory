@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {BallTypeModel} from '../models/ball-type-model.interface';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {of} from 'rxjs';
-import {NewOrderModel, Priority} from "../models/order-model.interface";
+import {NewOrderModel, OrderModel, OrderStatus, Priority} from "../models/order-model.interface";
 import {OrdersService} from "../servises/orders.service";
 
 @Component({
@@ -32,7 +32,8 @@ export class NewOrderFormComponent implements OnInit {
       toyName: '',
       quantity: null,
       deadline: null,
-      priority: this.first
+      priority: this.first,
+      salesID: Number(localStorage.getItem('id'))
     } as NewOrderModel);
 
     of(this.getTypes()).subscribe(toyName => {
@@ -54,8 +55,14 @@ export class NewOrderFormComponent implements OnInit {
   }
 
   submit() {
-    this.orderService.createOrder(this.form.value).subscribe(res => {
-      console.log(res);
+    const user = JSON.parse(localStorage.getItem('user'));
+    let order = this.form.value as NewOrderModel;
+    order.salesID = user.id;
+    this.orderService.createOrder(order).subscribe(res => {
+      const newOrder = order as OrderModel;
+      newOrder.status = OrderStatus.NEW;
+      newOrder.id = 0;
+      this.orderService.salesOrderCreate.next(newOrder);
     });
   }
 

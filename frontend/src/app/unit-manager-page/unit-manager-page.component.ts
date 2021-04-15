@@ -27,14 +27,23 @@ export class UnitManagerPageComponent implements OnInit {
   ngOnInit(): void {
     this.ordersService.assignUserOrder.asObservable().subscribe(res => {
       if (res) {
-        const index = this.workers.findIndex(value => value.id === res.user_id);
-        let order = this.newOrders.find(el=> el.id === res.order_id);
-        order.status = OrderStatus.ACTIVE;
-        this.workers[index].orders.push(order);
-        this.selectedWorker = this.workers[index];
-        this.activeOrders = this.selectedWorker.orders.filter((item) => item.status == OrderStatus.ACTIVE);
-        this.doneOrders = this.selectedWorker.orders.filter((item) => item.status == OrderStatus.DONE);
-        this.newOrders.splice(this.newOrders.findIndex(el=> el.id === res.order_id), 1);
+        if (!res.delete) {
+          const index = this.workers.findIndex(value => value.id === res.user_id);
+          let order = this.newOrders.find(el => el.id === res.order_id);
+          order.status = OrderStatus.ACTIVE;
+          this.workers[index].orders.push(order);
+          this.selectedWorker = this.workers[index];
+          this.activeOrders = this.selectedWorker.orders.filter((item) => item.status == OrderStatus.ACTIVE);
+          this.doneOrders = this.selectedWorker.orders.filter((item) => item.status == OrderStatus.DONE);
+          this.newOrders.splice(this.newOrders.findIndex(el => el.id === res.order_id), 1);
+        } else {
+          const index = this.workers.findIndex(value => value.id === res.user_id);
+          let order = this.activeOrders.find(el => el.id === res.order_id);
+          order.status = OrderStatus.NEW;
+          this.workers[index].orders.splice(this.workers[index].orders.findIndex(el => el.id === res.order_id), 1);
+          this.newOrders.push(order);
+          this.activeOrders.splice(this.activeOrders.findIndex(el => el.id === res.order_id), 1);
+        }
       }
     });
 

@@ -9,8 +9,9 @@ import {MaterialModel} from "../models/material-model.interface";
 })
 export class OrdersService {
 
-  public assignUserOrder: Subject<{ user_id: number, order_id: number }> = new Subject<{ user_id: number; order_id: number }>();
+  public assignUserOrder: Subject<{ user_id: number, order_id: number, delete: boolean }> = new Subject<{ user_id: number; order_id: number, delete: boolean }>();
   public assignOrderToDone: Subject<{ order_id: number }> = new Subject<{ order_id: number }>();
+  public salesOrderCreate: Subject<OrderModel> = new Subject<OrderModel>();
 
   constructor(private http: HttpClient) {
   }
@@ -24,7 +25,11 @@ export class OrdersService {
   }
 
   public deleteOrder(id: number): Observable<any> {
-    return this.http.post('/api/v1/delete_order', id);
+    return this.http.post(`/api/v1/delete_order/${id}`, id);
+  }
+
+  public unassignOrder(idUser: number, idOrder: number): Observable<any> {
+    return this.http.post(`api/v1/unassignOrder/${idUser}/${idOrder}`, idUser);
   }
 
   public changeStatus(id: number): Observable<any> {

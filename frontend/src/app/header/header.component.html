@@ -3,18 +3,9 @@
 
   <div class="icons-grid">
     <div class="icons-group">
-<!--      <div class="material-icons icons">menu</div>-->
-<!--      <mat-form-field (select)="onSelect(selected)" appearance="fill">-->
-<!--        <mat-label>Select an option</mat-label>-->
-<!--        <mat-select [(value)]="selected">-->
-<!--          <mat-option value="sales-manager">Sales Manager</mat-option>-->
-<!--          <mat-option value="worker-page">Worker</mat-option>-->
-<!--          <mat-option value="unit-manager-page">Unit Manager</mat-option>-->
-<!--        </mat-select>-->
-<!--      </mat-form-field>-->
-      <button type="button" pButton icon="pi pi-bars" label="Show" (click)="menu.toggle($event)"></button>
+      <button *ngIf="role === 'MANAGER'" type="button" pButton icon="pi pi-bars" label="" (click)="menu.toggle($event)"></button>
       <p-menu #menu [popup]="true" [model]="items"></p-menu>
-      <div class="material-icons icons">notifications</div>
+      <div class="material-icons icons" style="cursor: pointer;" [routerLink]="'/login'">logout</div>
     </div>
     <div>
       <div class="avatar-container">
@@ -23,7 +14,7 @@
           src="./assets/Profile_avatar_placeholder_large.png"
         />
       </div>
-      <div class="avatar-text">Ім'я</div>
+      <div class="avatar-text">{{name}}</div>
     </div>
   </div>
 </div>

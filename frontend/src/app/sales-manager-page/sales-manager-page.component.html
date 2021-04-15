@@ -19,7 +19,7 @@
         <div *ngIf="!newOrdersCollapse">
           <div *ngFor="let order of newOrders">
             <div class="order-container">
-              <app-order-card [order]="order" [newOrder]="true"></app-order-card>
+              <app-order-card [order]="order" [newOrder]="false"></app-order-card>
             </div>
           </div>
         </div>

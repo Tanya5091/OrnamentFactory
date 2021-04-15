@@ -29,6 +29,9 @@ export class SalesManagerPageComponent implements OnInit {
       this.doneOrders = this.orders.filter((item) => item.status == OrderStatus.DONE);
       this.newOrders = this.orders.filter((item) => item.status == OrderStatus.NEW);
     });
+    this.ordersService.salesOrderCreate.asObservable().subscribe(res => {
+      this.newOrders.push(res);
+    });
   }
 
 }

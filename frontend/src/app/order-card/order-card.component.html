@@ -5,8 +5,11 @@
       <span *ngIf="newOrder" (click)="assignToWorker()" class="material-icons icon-style">
         assignment_return
       </span>
-      <span *ngIf="withDelete" (click)="deleteOrder(order.id)" class="material-icons icon-style delete-icon">
-        add_circle
+      <span *ngIf="withDelete" (click)="deleteOrder(order.id)" class="material-icons icon-style">
+        delete_forever
+      </span>
+      <span *ngIf="unassign" (click)="unassignOrder()" class="material-icons icon-style">
+        assignment_returned
       </span>
     </div>
   </div>
@@ -25,7 +28,8 @@
       <ng-template #elseBlock>Виконано</ng-template>
       <div>до {{ order.deadline | date: 'dd:MM:YYYY' }}</div>
     </div>
-    <div *ngIf="order.status == active && worker" (click)="changeOrderStatus(order.id)" class="submit-order material-icons">
+    <div *ngIf="order.status == active && worker" (click)="changeOrderStatus(order.id)"
+         class="submit-order material-icons">
       done
     </div>
   </div>

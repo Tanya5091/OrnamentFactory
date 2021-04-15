@@ -8,10 +8,10 @@ import {MenuItem, MessageService} from "primeng/api";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  selected = 'sales-manager';
   @Input() navigate;
   items: MenuItem[];
-
+  name = 'name';
+  role = '';
 
   constructor(private router: Router,
               private messageService: MessageService) {
@@ -25,20 +25,20 @@ export class HeaderComponent implements OnInit {
         items: [{
           label: 'Sales Manager',
           routerLink: '/sales-manager'
-        }, {
-          label: 'Worker',
-          routerLink: '/worker-page'
         },
           {
             label: 'Unit Manager',
             routerLink: '/unit-manager-page'
           },
           {
-            label: 'Logout',
-            routerLink: '/login'
+            label: 'Register',
+            routerLink: '/register'
           }
         ]}
     ];
+    const user = JSON.parse(localStorage.getItem('user'));
+    this.name = user.login;
+    this.role = user.role;
   }
 
   update() {

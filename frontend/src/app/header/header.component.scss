@@ -23,6 +23,8 @@
 }
 .icons-group {
   margin-top: 24px;
+  display: flex;
+  height: fit-content;
 }
 
 .avatar-container {
@@ -30,6 +32,7 @@
   height: 90px;
   display: flex;
   margin-bottom: 4px;
+  margin: auto;
 }
 .avatar-image {
   border-radius: 50%;

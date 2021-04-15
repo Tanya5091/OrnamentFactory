@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
     };
     this.loading = true;
     this.httpClient.post('/api/v1/login', user).subscribe((res: any) => {
+      res.login = this.loginForm.get('login').value;
       localStorage.setItem('user', JSON.stringify(res));
       if (res.role === 'SALES_MANAGER') {
         this.router.navigate(['sales-manager']);

@@ -5,6 +5,7 @@ export class OrderModel {
   deadline: string;
   quantity: number;
   priority: Priority;
+  salesID: number;
 }
 
 export class NewOrderModel {
@@ -12,6 +13,7 @@ export class NewOrderModel {
   priority: Priority;
   deadline: string;
   quantity: number;
+  salesID: number;
 }
 
 export enum OrderStatus {

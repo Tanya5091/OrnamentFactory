@@ -26,6 +26,7 @@ export class OrderCardComponent implements OnInit {
   };
 
   @Input() worker: boolean = false;
+  @Input() unassign: boolean = false;
   @Input() workerId: number;
 
   constructor(private orderService: OrdersService) {
@@ -50,7 +51,14 @@ export class OrderCardComponent implements OnInit {
   assignToWorker() {
     this.orderService.assignOrderToWorker(this.workerId, this.order.id).subscribe(res => {
       console.log(res);
-      this.orderService.assignUserOrder.next({user_id: this.workerId, order_id: this.order.id});
+      this.orderService.assignUserOrder.next({user_id: this.workerId, order_id: this.order.id, delete: false});
     });
+  }
+
+  unassignOrder() {
+    this.orderService.unassignOrder(this.workerId, this.order.id).subscribe(res => {
+      console.log(res);
+      this.orderService.assignUserOrder.next({user_id: this.workerId, order_id: this.order.id, delete: true});
+    })
   }
 }
