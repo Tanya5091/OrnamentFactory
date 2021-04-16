@@ -3,7 +3,7 @@
     <tr>
       <th class="tab-head">Назва</th>
       <th class="tab-head">Кількість</th>
-      <th class="tab-head"></th>
+      <th class="tab-head"><span class="material-icons-outlined link" style="cursor: pointer" (click)="openDialog()">add_circle_outline</span></th>
     </tr>
   </ng-container>
   <ng-container *ngFor="let col of tableData">
@@ -11,46 +11,8 @@
       <td class="tab-row">{{ col.name }}</td>
       <td class="tab-row">{{ col.quantity }}</td>
       <td>
-        
-
-          <button type="button" mdbBtn color="default" rounded="true" data-toggle="modal" data-target="#basicExample"
-            (click)="frame.show()" mdbWavesEffect>
-            <span style="color: lightgray; cursor: pointer" class="material-icons-outlined">edit</span>
-          </button>
-
-          <div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
-            aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header text-center">
-                  <h4 class="modal-title w-100 font-weight-bold">Add material quantity</h4>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body mx-3">
-                  <div class="md-form mb-5">
-                    <input type="number" id="defaultForm-email" [formControl]="matQuantityFormModalNumber" class="form-control" mdbInput
-                      mdbValidate>
-                    <label for="defaultForm-email">Enter amount of materials</label>
-                    <mdb-error *ngIf="matQuantityFormModalNumber.invalid && (matQuantityFormModalNumber.dirty || matQuantityFormModalNumber.touched)">
-                      Input invalid
-                    </mdb-error>
-                    <mdb-success *ngIf="matQuantityFormModalNumber.valid && (matQuantityFormModalNumber.dirty || matQuantityFormModalNumber.touched)">
-                      Input
-                      valid
-                    </mdb-success>
-                  </div>        
-                </div>
-                <div class="modal-footer d-flex justify-content-center">
-                  <button (click)="removeMaterials()" mdbBtn color="default" class="waves-light" mdbWavesEffect>Remove materials</button>
-                  <button (click)="addMaterials()" mdbBtn color="default" class="waves-light" mdbWavesEffect>Add materials</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
+      <span style="color: #000000; cursor: pointer" (click)="editDialog(col)" class="material-icons-outlined">edit</span>
+      <span style="color: #000000; cursor: pointer" (click)="deleteMaterial(col)" class="material-icons-outlined">delete</span>
       </td>
     </tr>
   </ng-container>

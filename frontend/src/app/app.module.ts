@@ -25,6 +25,9 @@ import {MenuModule} from 'primeng/menu';
 import {MenuItem, MessageService} from 'primeng/api';
 import {OrdersService} from "./servises/orders.service";
 import {DropdownModule} from 'primeng/dropdown';
+import {ButtonsModule, InputsModule, InputUtilitiesModule, ModalModule, WavesModule} from "angular-bootstrap-md";
+import {DialogComponent} from "./dialog/dialog.component";
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -38,7 +41,8 @@ import {DropdownModule} from 'primeng/dropdown';
     WorkerPageComponent,
     NewOrderFormComponent,
     SalesManagerPageComponent,
-    UnitManagerPageComponent
+    UnitManagerPageComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -53,8 +57,15 @@ import {DropdownModule} from 'primeng/dropdown';
     MatSelectModule,
     MenuModule,
     DropdownModule,
-    FormsModule
+    FormsModule,
+    WavesModule,
+    ButtonsModule,
+    ModalModule.forRoot(),
+    InputUtilitiesModule,
+    InputsModule,
+    MatDialogModule
   ],
+  entryComponents: [DialogComponent],
   providers: [
     MessageService,
     OrdersService

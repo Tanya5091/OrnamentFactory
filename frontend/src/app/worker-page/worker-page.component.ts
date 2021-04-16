@@ -3,6 +3,8 @@ import {OrderModel, OrderStatus} from '../models/order-model.interface';
 import {OrdersService} from "../servises/orders.service";
 import {MaterialModel} from "../models/material-model.interface";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {DialogComponent} from "../dialog/dialog.component";
 
 @Component({
   selector: 'app-worker-page',

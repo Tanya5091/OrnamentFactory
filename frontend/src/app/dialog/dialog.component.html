@@ -1,0 +1,33 @@
+<div class="component-main" *ngIf="data.addMaterial">
+  <div class="exit" (click)="closeModal()"></div>
+  <header class="main-header">
+    <h2 class="main-title">Add new material</h2>
+  </header>
+  <section class="body-input">
+    <input class="add-server-input" [ngClass]="{'enable-border': orderName}" placeholder="Material Name"
+           (keyup.enter)="buttonElement.click()"
+           [(ngModel)]="orderName">
+  </section>
+  <footer class="btn-footer">
+    <button class="cancel-btn" (click)="closeModal()">Cancel</button>
+    <button class="submit-btn save-btn" [mat-dialog-close]="orderName" #buttonElement
+            [disabled]="!orderName">Create</button>
+  </footer>
+</div>
+
+<div class="component-main"  *ngIf="!data.addMaterial">
+  <div class="exit" (click)="closeModal()"></div>
+  <header class="main-header">
+    <h2 class="main-title">Edit {{data.item.name}}</h2>
+  </header>
+  <section class="body-input">
+    <input class="add-server-input" type="number" [min]="0" [ngClass]="{'enable-border': orderName}" placeholder="Material Quantity"
+           (keyup.enter)="buttonElement.click()"
+           [(ngModel)]="quantity">
+  </section>
+  <footer class="btn-footer">
+    <button class="cancel-btn" (click)="closeModal()">Cancel</button>
+    <button class="submit-btn save-btn" [mat-dialog-close]="quantity" #buttonElement
+            [disabled]="data.item.quantity == quantity">Change</button>
+  </footer>
+</div>

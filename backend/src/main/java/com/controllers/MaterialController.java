@@ -25,8 +25,8 @@ public class MaterialController {
 
     @PostMapping("api/v1/create_material")
     public ResponseEntity createMaterial(@RequestBody String name){
-        materialService.create(name);
-        return new ResponseEntity(HttpStatus.ACCEPTED);
+        MaterialEntity result = materialService.create(name);
+        return new ResponseEntity(result, HttpStatus.ACCEPTED);
     }
 
     @PostMapping("api/v1/add_quantity/{id}/{quantity}")

@@ -24,6 +24,22 @@ export class OrdersService {
     return this.http.post('/api/v1/create_order', order);
   }
 
+  public createMaterial(name: string): Observable<any> {
+    return this.http.post('/api/v1/create_material', name);
+  }
+
+  public addQuantity(id: number, quantity: number): Observable<any> {
+    return this.http.post(`/api/v1/add_quantity/${id}/${quantity}`, {id, quantity});
+  }
+
+  public subQuantity(id: number, quantity: number): Observable<any> {
+    return this.http.post(`/api/v1/sub_quantity/${id}/${quantity}`, {id, quantity});
+  }
+
+  public deleteMaterial(id: number): Observable<any> {
+    return this.http.post(`/api/v1/delete_material/${id}`, {id});
+  }
+
   public deleteOrder(id: number): Observable<any> {
     return this.http.post(`/api/v1/delete_order/${id}`, id);
   }
