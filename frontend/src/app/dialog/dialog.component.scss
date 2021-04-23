@@ -2,16 +2,15 @@ $body-width: 384px;
 $body-height: 232px;
 
 .component-main {
-  background: #E0E3E6;
+  background: #e0e3e6;
   position: fixed;
   z-index: 6000;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   width: $body-width;
   height: $body-height;
   left: calc((100vw / 2) - #{$body-width/2});
-  top: calc((100vh / 2) - #{($body-height)/2});
+  top: calc((100vh / 2) - #{($body-height) / 2});
   border-radius: 4px;
-
-
 
   .main-header {
     padding: 32px 0 0 32px;
@@ -21,12 +20,12 @@ $body-height: 232px;
       font-weight: 600;
       font-size: 20px;
       line-height: 24px;
-      color: #141D27;
+      color: #141d27;
     }
   }
 
   .exit {
-    background-color: #141D27;
+    background-color: #141d27;
     mask: url("~src/assets/images/exit.svg") no-repeat center;
     width: 14px;
     height: 14px;
@@ -45,19 +44,19 @@ $body-height: 232px;
       font-size: 12px;
       line-height: 14px;
 
-      color: #3B4957;
+      color: #3b4957;
     }
 
     .enable-color {
-      color: #141D27;
+      color: #141d27;
     }
 
     .add-server-input {
       width: 320px;
       height: 32px;
-      background: #E8ECED;
+      background: #e8eced;
       border-radius: 4px !important;
-      color: #141D27;
+      color: #141d27;
       padding-left: 16px;
       font-style: normal;
       font-weight: 500;
@@ -67,11 +66,11 @@ $body-height: 232px;
     }
 
     .enable-border {
-      border: 1px solid #3B4957;
+      border: 1px solid #3b4957;
     }
 
     .add-server-input::placeholder {
-      color: #3B4957;
+      color: #3b4957;
     }
   }
 
@@ -88,8 +87,8 @@ $body-height: 232px;
       font-weight: bold;
       font-size: 14px;
       line-height: 16px;
-      color: #2B3847;
-      background: #E8ECED;
+      color: #2b3847;
+      background: #e8eced;
       border-radius: 4px;
     }
 
@@ -102,13 +101,13 @@ $body-height: 232px;
       font-weight: bold;
       font-size: 14px;
       line-height: 16px;
-      color: #EFF1F3;
-      background: #2B3847;
+      color: #eff1f3;
+      background: #2b3847;
       border-radius: 4px;
 
       &:disabled {
-        background: #E8ECED;
-        color: #818F99;
+        background: #e8eced;
+        color: #818f99;
       }
     }
 
@@ -116,7 +115,4 @@ $body-height: 232px;
       width: 78px;
     }
   }
-
 }
-
-
